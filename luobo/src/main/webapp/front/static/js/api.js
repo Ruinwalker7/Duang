@@ -59,6 +59,7 @@ layui.define(['layer'],function(exports) {
 				success: function(res) {
 					console.log(res);
 					if(res.code == 0) {
+						console.log("category return success")
 						success && success(res);
 					} else {
 						layer.msg(res.msg || res.code, {

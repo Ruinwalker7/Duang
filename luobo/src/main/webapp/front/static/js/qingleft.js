@@ -179,7 +179,6 @@ layui.define(['layer','laytpl','api','qingad','qingbqy'],function(exports){
 	
 	leftPTpls.sort(function(a,b){
 		return a.sort - b.sort;
-//		return b.sort - a.sort;
 	});
 	
 	
@@ -267,8 +266,6 @@ layui.define(['layer','laytpl','api','qingad','qingbqy'],function(exports){
 		 * }
 		 */
 		edge:function(options){
-			// 加载广告
-			//leftPTpls.push(qingad.leftAD());
 			// 渲染数据
 			laytpl(leftMTpl.tpl).render(leftPTpls,function(html){
 				// 显示内容
@@ -280,6 +277,7 @@ layui.define(['layer','laytpl','api','qingad','qingbqy'],function(exports){
 				action.showRecommedBlog();
 				action.showYoulian();
 			});
+
 			// 标签云数据
 			api.blogTagCloud({},function(result){
 				var tagTpl = laytpl(leftCTpl.tagCloudListTpl);

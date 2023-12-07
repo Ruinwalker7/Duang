@@ -10,7 +10,7 @@
   <title>橙子博客</title>
 
   <meta name="renderer" content="webkit">
-  <link rel="shortcut icon" type="image/png" href="static/i/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="/front/static/i/favicon.png">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
