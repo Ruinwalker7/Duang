@@ -2,10 +2,6 @@
 
 $(function() {
 
-	// author badge :)
-	// var author = '<div style="position: fixed;bottom: 0;right: 20px;background-color: #fff;box-shadow: 0 4px 8px rgba(0,0,0,.05);border-radius: 3px 3px 0 0;font-size: 12px;padding: 5px 10px;">By <a href="https://twitter.com/mhdnauvalazhar">@mhdnauvalazhar</a> &nbsp;&bull;&nbsp; <a href="https://www.buymeacoffee.com/mhdnauvalazhar">Buy me a Coffee</a></div>';
-	// $("body").append(author);
-
 	$("input[type='password'][data-eye]").each(function(i) {
 		var $this = $(this),
 			id = 'eye-password-' + i,
@@ -72,13 +68,18 @@ $(function() {
 
 	document.getElementById("loginForm").addEventListener("submit", function(event) {
 		event.preventDefault(); // 阻止表单默认提交行为
-		if(document.getElementById("email").value ==""){
+		if(document.getElementById("email").value ===""){
 			document.getElementsByClassName("invalid-feedback")[0].textContent="请输入用户名"
 			return
-		}else if(document.getElementById("password").value==""){
-			document.getElementsByClassName("invalid-feedback")[0].textContent="请输入密码"
+		}else if(document.getElementById("password").value===""){
+			document.getElementsByClassName("invalid-feedback")[1].textContent="请输入密码"
+			return;
+		}else if(document.getElementById("code").value===""){
+			document.getElementById("warning1").textContent="请输入验证码"
+			document.getElementById("warning1").style.display="block";
 			return;
 		}
+
 		fetch("/user/login", {
 			method: "POST",
 			headers: {
@@ -86,24 +87,51 @@ $(function() {
 			},
 			body: JSON.stringify({
 				username: document.getElementById("email").value, // 确保提供了 'name' 参数
-				password: document.getElementById("password").value
+				password: document.getElementById("password").value,
+				code:  document.getElementById("code").value
 			})
 		})
 			.then(response => {
-				if (!response.ok) {
-					document.getElementById("email").value =""
-					document.getElementById("password").value =""
-					document.getElementsByClassName("invalid-feedback")[0].textContent="用户名密码错误"
-					throw new Error("Network response was not ok.");
-				}else{
-					window.location.href = "/home"
+				// 检查HTTP响应状态
+				if (response.status === 302) {
+					// 获取重定向的URL
+					window.location.href = response.headers.get('Location');
+					return response.json();
 				}
-				return response;
+				else if (!response.ok) {
+					throw new Error(`Network response was not ok: ${response.status}`);
+				}
+				return response.json();
+			}).then(data =>{
+				console.log(data)
+				document.getElementById("code").value =""
+				document.getElementById("warning1").textContent=data.message
+				document.getElementById("warning1").style.display="block";
+				if (data.code === 0) {
+					window.location.href = "/home"
+				} else if(data.code===2002){
+					var timestamp = new Date().getTime();
+					captchaImage.src = '/captcha?' + timestamp;
+					console.error('请求失败:', data.code, data.message);
+				} else if(data.code===2001){
+					document.getElementById("password").value =""
+					var timestamp = new Date().getTime();
+					captchaImage.src = '/captcha?' + timestamp;
+					console.error('请求失败:', data.code, data.message);
+				}
 			})
 			.catch(error => {
 				// 处理错误
+				document.getElementById("warning1").textContent="服务器出现问题！"
+				document.getElementById("warning1").style.display="block";
 				console.error("There was a problem with the fetch operation:", error);
-				// 可能的操作：显示错误消息给用户
 			});
+	});
+
+	var captchaImage = document.getElementById('verity-code');
+	// 为图片添加点击事件监听器
+	captchaImage.addEventListener('click', function() {
+		var timestamp = new Date().getTime();
+		captchaImage.src = '/captcha?' + timestamp;
 	});
 });

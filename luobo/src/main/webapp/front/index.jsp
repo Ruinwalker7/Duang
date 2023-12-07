@@ -170,7 +170,6 @@
     </c:forEach>
     </div>
 
-
             </div>
 
             <div class="layui-col-md4">

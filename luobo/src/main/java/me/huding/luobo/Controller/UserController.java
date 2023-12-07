@@ -1,6 +1,10 @@
 package me.huding.luobo.Controller;
 
 import com.google.gson.Gson;
+import com.wf.captcha.utils.CaptchaUtil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import me.huding.luobo.config.ResConsts;
 import me.huding.luobo.dao.UserDao;
 import me.huding.luobo.entity.User;
@@ -19,6 +23,16 @@ import java.util.Scanner;
 public class UserController extends HttpServlet {
     private final UserDao userDao = new UserDao();
 
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    class loginUser{
+        private String username;
+
+        private String password;
+
+        private String code;
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String json;
@@ -26,9 +40,20 @@ public class UserController extends HttpServlet {
             json = scanner.useDelimiter("\\A").next();
         }
 
-        User user  = new Gson().fromJson(json,User.class);
-        User user1 = userDao.selectByUsername(user.getUsername());
+        loginUser user  = new Gson().fromJson(json,loginUser.class);
         System.out.println("receive login request"+user);
+        if (!CaptchaUtil.ver(user.getCode(), request)) {
+            CaptchaUtil.clear(request);  // 清除session中的验证码
+            Result result = new Result(ResConsts.Code.CODE_ERROR,"验证码错误","");
+            String retJson = new Gson().toJson(result);
+            System.out.println("Verity code error!");
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(retJson);
+            return;
+        }
+
+        User user1 = userDao.selectByUsername(user.getUsername());
 
         if(user1 == null){
             System.out.println("Don't find user");
@@ -47,7 +72,7 @@ public class UserController extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(retJson);
-            response.sendRedirect("/home");
+//            response.sendRedirect("/home");
         }else{
             System.out.println(user1);
             Result result = new Result(ResConsts.Code.PASS_ERROR,"用户名或密码错误","");

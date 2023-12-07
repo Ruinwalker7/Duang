@@ -5,6 +5,16 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <!-- 图形验证码servlet -->
+    <servlet>
+        <servlet-name>CaptchaServlet</servlet-name>
+        <servlet-class>com.wf.captcha.servlet.CaptchaServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CaptchaServlet</servlet-name>
+        <url-pattern>/captcha</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>index</servlet-name>
         <jsp-file>/front/index.jsp</jsp-file>
@@ -109,4 +119,7 @@
         <error-code>504</error-code>
         <location>/error-pages/504.html</location>
     </error-page>
+
+
+
 </web-app>
