@@ -25,13 +25,7 @@ import me.huding.luobo.model.Category;
 import me.huding.luobo.model.Notice;
 import me.huding.luobo.utils.DBUtils;
 
-/**
- *
- *
- * @author JianhongHu
- * @version 1.0
- * @date 2016年11月2日
- */
+
 public class NoticeController extends AbstarctBackController {
 
 	@Override

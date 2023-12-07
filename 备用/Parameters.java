@@ -9,16 +9,6 @@ import java.util.Properties;
 
 import com.jfinal.kit.PathKit;
 
-/**
- * 相关的配置信息放在一个配置文件里，通过类Parameters来统一访问。
- * Parameters里通过java.util.Properties读取配置文件，然后通过
- * {@link #getParameter(String)}来获得配置信息。系统的各个全局
- * 变量也都放在这个类里面，静态共享。
- * 
- * @author JianhongHu
- * @version 1.0
- * @date 2016年10月30日
- */
 public class Parameters {
 	
 	public static String ROOT_CLASS_PATH = PathKit.getRootClassPath();

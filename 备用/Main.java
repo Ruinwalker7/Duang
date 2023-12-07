@@ -23,8 +23,7 @@ import me.huding.luobo.utils.DateStyle;
 import me.huding.luobo.utils.DateUtils;
 
 public class Main {
-	
-	
+
 	public static String genPath(String url){
 		return PathKit.getWebRootPath() + url;
 	}
@@ -126,6 +125,7 @@ public class Main {
 		cp.start();
 		return cp.getDataSource();
 	}
+
 
 	public static void main(String[] args) throws IOException  {
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(getDataSource());

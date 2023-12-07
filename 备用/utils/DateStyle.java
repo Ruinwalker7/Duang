@@ -1,7 +1,5 @@
 package me.huding.luobo.utils;
 
-
-
 public enum DateStyle {
 	
 	YYYY_MM("yyyy-MM", false),

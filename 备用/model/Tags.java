@@ -39,7 +39,7 @@ public class Tags extends BaseTags<Tags> {
 			if(!isFirst){
 				builder.append(",");
 			} 
-			builder.append("'").append(record.get("id")).append("'");
+			builder.append("'").append((String) record.get("id")).append("'");
 			isFirst = false;
 		}
 		builder.append(") group by tagID");

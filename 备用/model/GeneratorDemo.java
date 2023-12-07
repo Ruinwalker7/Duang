@@ -32,7 +32,7 @@ public class GeneratorDemo {
 		// model 所使用的包名 (MappingKit 默认使用的包名)
 		String modelPackageName = "me.huding.luobo.model";
 		// model 文件保存路径 (MappingKit 与 DataDictionary 文件默认保存路径)
-		String modelOutputDir = baseModelOutputDir + "/..";
+		String modelOutputDir = baseModelOutputDir + "/src/main";
 
 		// 创建生成器
 		Generator gernerator = new Generator(getDataSource(), baseModelPackageName, baseModelOutputDir, modelPackageName, modelOutputDir);

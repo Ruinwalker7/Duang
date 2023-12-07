@@ -1,8 +1,3 @@
-
-
-
-
-
 CREATE TABLE `blog` (
   `id` char(32) NOT NULL COMMENT '主键，UUID作为键值',
   `title` varchar(255) NOT NULL COMMENT '标题',
@@ -603,9 +598,6 @@ VALUES
 	(15,'ChenJY\'sBlog',NULL,'http://chenjiayang.me/','2017-08-30 09:32:15');
 
 UNLOCK TABLES;
-
-
-
 
 
 

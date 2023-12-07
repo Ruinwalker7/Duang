@@ -1,14 +1,13 @@
 /**
- * 青菜萝卜 API
+ * API
  * 所有异步请求的地址
  */
 
 layui.define(['layer'],function(exports) {
 	var $ = layui.jquery;
 	var layer = layui.layer;
-	
-	
-    var BASE_PREFIX = "http://localhost:8080/luobo";
+
+    var BASE_PREFIX = "http://localhost:8080";
 
 	var pageSize = 10;
 	

@@ -1,8 +1,3 @@
-/**
- * 
- * 青菜萝卜 主入口
- * 
- */
 layui.define(['api','layer','laytpl','laypage','common','qingleft'], function(exports) {
 	var $ = layui.jquery;
 	var layer = layui.layer;
