@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料">
-  <meta name="keywords" content="博客">
+  <meta name="keywords" content="橙子博客">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>橙子博客</title>
 
@@ -14,7 +14,7 @@
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="青菜萝卜胡丁程序员技术分享博客"/>
+  <meta name="apple-mobile-web-app-title" content="程序员技术分享博客"/>
   <meta name="msapplication-TileColor" content="#0e90d2">
   <link rel="stylesheet" href="/front/static/css/amazeui.min.css">
   <link rel="stylesheet" href="/front/static/layui/css/layui.css"/>
@@ -25,17 +25,17 @@
 	<header class="am-topbar am-topbar-fixed-top qing-header">
 		<div class="am-g am-g-fixed">
 		  <h1 class="am-topbar-brand">
-	      <a class="qing-logo" href="index.html"></a>
+	      <a class="qing-logo" href="index"></a>
 	    </h1>
 			<!-- nav start -->
 			<nav class="am-g am-g-fixed qing-fixed qing-nav">
 				<button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-show-sm-only am-radius qing-btn-mobile" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 			  <div class="am-collapse am-topbar-collapse" id="blog-collapse">
 			    <ul class="am-nav am-nav-pills am-topbar-nav">
-			      <li class="am-active"><a href="index.html"><i class="am-icon-home"></i> 首页</a></li>
-			      <li><a href="about"><i class="am-icon-info"></i> 关于本站</a></li>
-			      <li><a href="works"><i class="am-icon-code"></i> 我的作品</a></li>
-			      <li><a href="message"><i class="am-icon-paper-plane"></i> 留言墙</a></li>
+			      <li class="am-active"><a href="index"><i class="am-icon-home"></i> 首页</a></li>
+<%--			      <li><a href="about"><i class="am-icon-info"></i> 关于本站</a></li>--%>
+<%--			      <li><a href="works"><i class="am-icon-code"></i> 我的作品</a></li>--%>
+<%--			      <li><a href="message"><i class="am-icon-paper-plane"></i> 留言墙</a></li>--%>
 <%--			      <li><a href="donate"><i class="am-icon-share-alt"></i> 赞助作者</a></li>--%>
 			    </ul>
 			    <form class="am-topbar-form am-topbar-right am-form-inline layui-form am-hide-sm-only" lay-submit lay-filter="search" role="search">
