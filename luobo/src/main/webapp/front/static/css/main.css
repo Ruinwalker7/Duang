@@ -1,0 +1,91 @@
+body {
+    /* background: linear-gradient(30deg, rgba(255, 165, 150, 0.5), rgba(0, 228, 255, 0.35)); */
+    min-height: 100vh;
+    margin: 0px;
+    background-image: -webkit-linear-gradient(top left, rgba(255, 165, 150, 0.5), rgba(0, 228, 255, 0.35));
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Lato, Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+
+/* 图标颜色 */
+
+.fa-calendar-alt {
+    color: #00008b;
+}
+
+.fa-boxes {
+    color: #dc143c;
+}
+
+.fa-tag {
+    color: #d2691e;
+}
+
+.fa-id-card {
+    color: #00ced1;
+}
+
+.fa-clock {
+    color: #008000;
+}
+
+.fa-thumbs-up {
+    color: #9370db;
+}
+
+.fa-comments {
+    color: #f00;
+}
+
+.fa-history {
+    color: #ff8c00;
+}
+
+.fa-folder-open {
+    color: #9370db;
+}
+
+.fa-tags {
+    color: #d2691e;
+}
+
+.fa-archive {
+    color: #008000;
+}
+
+.fa-chart-line {
+    color: #dc143c;
+}
+
+.fa-home {
+    color: #dc143c;
+}
+
+.fa-link {
+    color: #00ced1;
+}
+
+.fa-heart {
+    color: #f00;
+}
+
+.fa-list {
+    color: #adff2f;
+}
+
+.fa-music {
+    color: #8a2be2;
+}
+
+.fa-video {
+    color: #5f9ea0;
+}
+
+.fa-file-image {
+    color: #ffe4c4;
+}
+
+.fa-cloud {
+    color: #6495ed;
+}
