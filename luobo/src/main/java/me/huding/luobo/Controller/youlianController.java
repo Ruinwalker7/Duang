@@ -21,7 +21,6 @@ import java.util.List;
 public class youlianController extends HttpServlet {
     private youlianDao youlianDao1 = new youlianDao();
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<youlian> data = youlianDao1.selectAll();

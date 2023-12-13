@@ -26,7 +26,14 @@
     <body style="background-color: #f3f3f3;">
         <div class="layui-layout layui-layout-admin">
             <div class="layui-header">
-                <div class="layui-logo layui-hide-xs layui-bg-black">博客</div>
+                <div class="layui-logo layui-hide-xs layui-bg-black layui-nav layui-nav-item">
+
+                        <a href="/index">博客</a>
+
+<%--                    <a href="/index">--%>
+<%--                        博客</a>--%>
+
+                </div>
                 <!-- 头部区域（可配合layui 已有的水平导航） -->
                 <ul class="layui-nav layui-layout-left">
                     <!-- 移动端显示 -->
@@ -37,22 +44,22 @@
                         <a href="javascript:;">
                             <i class="fa-fw fa fa-home"></i>主页</a>
                     </li>
-                    <li class="layui-nav-item layui-hide-xs">
-                        <a href="javascript:;">
-                            <i class="fa-fw fa fa-id-card"></i> 关于本站</a>
-                    </li>
-                    <li class="layui-nav-item layui-hide-xs">
-                        <a href="javascript:;">
-                            <i class="fa fa-archive"></i> 我的作品 </a>
-                    </li>
-                    <li class="layui-nav-item layui-hide-xs">
-                        <a href="javascript:;">
-                            <i class="fa fa fa-thumbs-up"></i> 留言墙</a>
-                    </li>
-                    <li class="layui-nav-item layui-hide-xs">
-                        <a href="javascript:;">
-                            <i class="fa fa-support"></i> 赞助作者</a>
-                    </li>
+<%--                    <li class="layui-nav-item layui-hide-xs">--%>
+<%--                        <a href="javascript:;">--%>
+<%--                            <i class="fa-fw fa fa-id-card"></i> 关于本站</a>--%>
+<%--                    </li>--%>
+<%--                    <li class="layui-nav-item layui-hide-xs">--%>
+<%--                        <a href="javascript:;">--%>
+<%--                            <i class="fa fa-archive"></i> 我的作品 </a>--%>
+<%--                    </li>--%>
+<%--                    <li class="layui-nav-item layui-hide-xs">--%>
+<%--                        <a href="javascript:;">--%>
+<%--                            <i class="fa fa fa-thumbs-up"></i> 留言墙</a>--%>
+<%--                    </li>--%>
+<%--                    <li class="layui-nav-item layui-hide-xs">--%>
+<%--                        <a href="javascript:;">--%>
+<%--                            <i class="fa fa-support"></i> 赞助作者</a>--%>
+<%--                    </li>--%>
 
                 </ul>
                 <ul class="layui-nav layui-layout-right">
@@ -71,7 +78,7 @@
                             <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img"> 管理后台
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">管理登录</a></dd>
+                            <dd><a href="/login">管理登录</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -81,17 +88,18 @@
 
         <div class="layui-row layui-col-space32" style="padding-left:200px;padding-right:200px;padding-top:100px;margin:0px">
             <div class="layui-col-md8">
-                <div class="layui-panel" style="margin-bottom: 20px">
-                    <div style="padding: 5px;">面板任意内容</div>
+<%--                <div class="layui-panel"  style="margin-bottom: 20px">--%>
+<%--                    <div style="padding: 5px;" >面板任意内容</div>--%>
+<%--                </div>--%>
+
+                <div class="layui-carousel" id="ID-carousel-demo-set" lay-filter="filter-demo-carousel-set"  style="margin-bottom: 20px">
+                    <div carousel-item id="notice-content">
+
+                    </div>
                 </div>
 
                 <div class="layui-carousel" id="ID-carousel-demo-image" style="margin-bottom: 20px">
-                    <div carousel-item>
-                        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-1.jpg"></div>
-                        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-2.jpg"></div>
-                        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-3.jpg"></div>
-                        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-4.jpg"></div>
-                        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-5.jpg"></div>
+                    <div carousel-item id="carousel">
                     </div>
                 </div>
                 <div class="layui-card">
@@ -110,33 +118,33 @@
                     </div>
                 </div>
 
-                <div class="layui-card ">
-                    <div class="layui-card-header ">最新文章</div>
-                    <div class="layui-card-body ">
-                        结合 layui 的栅格系统<br> 轻松实现响应式布局
-                    </div>
-                </div>
+<%--                <div class="layui-card ">--%>
+<%--                    <div class="layui-card-header ">最新文章</div>--%>
+<%--                    <div class="layui-card-body ">--%>
+<%--                        结合 layui 的栅格系统<br> 轻松实现响应式布局--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                <div class="layui-card ">
-                    <div class="layui-card-header ">标签云</div>
-                    <div class="layui-card-body ">
-                        结合 layui 的栅格系统<br> 轻松实现响应式布局
-                    </div>
-                </div>
+<%--                <div class="layui-card ">--%>
+<%--                    <div class="layui-card-header ">标签云</div>--%>
+<%--                    <div class="layui-card-body ">--%>
+<%--                        结合 layui 的栅格系统<br> 轻松实现响应式布局--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                <div class="layui-card ">
-                    <div class="layui-card-header ">友情链接</div>
-                    <div class="layui-card-body ">
-                        结合 layui 的栅格系统<br> 轻松实现响应式布局
-                    </div>
-                </div>
+<%--                <div class="layui-card ">--%>
+<%--                    <div class="layui-card-header ">友情链接</div>--%>
+<%--                    <div class="layui-card-body ">--%>
+<%--                        结合 layui 的栅格系统<br> 轻松实现响应式布局--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                <div class="layui-card ">
-                    <div class="layui-card-header ">猜你喜欢</div>
-                    <div class="layui-card-body ">
-                        结合 layui 的栅格系统<br> 轻松实现响应式布局
-                    </div>
-                </div>
+<%--                <div class="layui-card ">--%>
+<%--                    <div class="layui-card-header ">猜你喜欢</div>--%>
+<%--                    <div class="layui-card-body ">--%>
+<%--                        结合 layui 的栅格系统<br> 轻松实现响应式布局--%>
+<%--                    </div>--%>
+<%--                </div>--%>
             </div>
         </div>
 
@@ -144,18 +152,7 @@
 
         <script src="//unpkg.com/layui@2.9.0/dist/layui.js "></script>
         <script src="front/static/js/index.js"></script>
-        <script>
-            layui.use(function() {
-                var carousel = layui.carousel;
-                // 渲染 - 图片轮播
-                carousel.render({
-                    elem: '#ID-carousel-demo-image',
-                    width: '100%',
-                    height: '360px',
-                    interval: 3000
-                });
-            });
-        </script>
+
 
     </body>
 
