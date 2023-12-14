@@ -151,7 +151,7 @@
 
 
         <script src="//unpkg.com/layui@2.9.0/dist/layui.js "></script>
-        <script src="front/static/js/index.js"></script>
+        <script src="/front/static/js/index.js"></script>
 
 
     </body>

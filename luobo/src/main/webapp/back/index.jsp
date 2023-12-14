@@ -1,0 +1,97 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<%
+    HttpSession session1 = request.getSession(false); // 获取当前会话，如果不存在则不创建新会话
+
+    // 检查会话是否存在以及其中的字段值
+    if (session1 != null && session1.getAttribute("user") != null) {
+        // loggedIn 字段为 true，用户已登录，继续显示当前页面
+    } else {
+        // loggedIn 字段不为 true，用户未登录，进行重定向到登录页面或其他页面
+        response.sendRedirect("/"); // 重定向到登录页面
+    }
+%>
+
+<head>
+    <title>后台管理</title>
+    <link href="//cdn.staticfile.org/layui/2.9.0/css/layui.css" rel="stylesheet">
+    <script ref="reference" src="/back/static/js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="/back/static/css/style.css">
+    <link rel="icon" type="/static/" href="favicon.ico">
+</head>
+<body>
+
+<script src="//cdn.staticfile.org/layui/2.9.0/layui.js"></script>
+
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo" style="font-size: large">Security Code</div>
+<%--        <ul class="layui-nav layui-layout-left">--%>
+<%--            <li class="layui-nav-item"><a href="">控制台</a></li>--%>
+<%--        </ul>--%>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" lay-unselect="">
+                <a ><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+            </li>
+            <li class="layui-nav-item" lay-unselect="">
+                <a href="/exit">退出</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a class="main_left" data-src="/man">首页</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="main_left" >文章</a>
+                    <dl class="layui-nav-child">
+                        <dd><a class="navItem" data-src="/back/write.jsp">发布文章</a></dd>
+                        <dd><a class="navItem" data-src="/back/write.jsp">文章管理</a></dd>
+                        <dd><a class="navItem" data-src="/back/write.jsp">草稿归纳</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a class="main_left">通用</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">选项1</a></dd>
+                        <dd><a href="javascript:;">选项2</a></dd>
+                        <dd><a href="javascript:;">选项3</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a class="main_left"  data-src="/customer">关于</a>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a class="main_left"  data-src="/customer">帮助</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="layui-body" id="content">
+        <div class="layui-tab-content">
+            <div class="layui-show">
+                <iframe id="mainframe" frameborder="0" scrolling="yes" style="width: 100%" src="/man"> </iframe>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+</html>
+
