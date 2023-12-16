@@ -18,6 +18,7 @@
 					<div class="brand">
 						<img src="/back/static/img/logo.jpg" alt="logo">
 					</div>
+
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">登录</h4>

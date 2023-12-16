@@ -28,10 +28,8 @@
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo" style="font-size: large">Security Code</div>
-<%--        <ul class="layui-nav layui-layout-left">--%>
-<%--            <li class="layui-nav-item"><a href="">控制台</a></li>--%>
-<%--        </ul>--%>
+        <a class="layui-logo" style="font-size: large" href="/index">辰的个人博客</a>
+
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item" lay-unselect="">
                 <a ><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>

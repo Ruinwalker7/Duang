@@ -16,6 +16,11 @@
 		</developer>
 	</developers>
 	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.jfinal/jfinal -->
 		<dependency>
 			<groupId>com.jfinal</groupId>

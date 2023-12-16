@@ -34,6 +34,32 @@ public class BlogDao {
         return result;
     }
 
+    public List<Blog> findforIndex() throws SQLException {
+        List<Blog> result = new ArrayList<>();
+        try (Connection conn = DruidUtil.getConnection();
+
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,author,summary,publishTime,coverURL,tags,readNum,commentNum from blog WHERE type = 1 and status = 0 order by publishTime desc limit 6"
+             );
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Blog data = new Blog();
+                data.setId(rs.getString("id"));
+                data.setTitle(rs.getString("title"));
+                data.setAuthor(rs.getString("author"));
+                data.setSummary(rs.getString("summary"));
+                data.setPublishTime(rs.getTimestamp("publishTime"));
+                data.setCoverURL(rs.getString("coverURL"));
+                data.setTags(rs.getString("tags"));
+                data.setReadNum(rs.getInt("readNum"));
+                data.setCommentNum(rs.getInt("commentNum"));
+                result.add(data);
+            }
+        }
+        return result;
+    }
+
+
     public List<Blog> findHot() throws SQLException {
         List<Blog> result = new ArrayList<>();
         try (Connection conn = DruidUtil.getConnection();
