@@ -1,41 +1,87 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="me.huding.luobo.dao.BlogTagsDao" %>
+<%@ page import="java.util.List" %>
+<%@ page import="me.huding.luobo.entity.BlogTags" %>
+<%@ page import="me.huding.luobo.dao.BlogCategoryDao" %>
+<%@ page import="me.huding.luobo.entity.BlogCategory" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
 <head>
+    <link rel="stylesheet" href="/back/editor.md/css/editormd.min.css" />
+    <link rel="stylesheet" href="/back/static/css/write.css" />
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+<%--    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>--%>
+    <script src="/back/editor.md/editormd.min.js"></script>
+    <script src="/back/static/js/write.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js" integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
 <body>
+    <div class="form">
+        <div>
+            <label>
+                标题：
+            </label>
+            <div>
+                <input id="titleInput" type="text" name="" placeholder="标题" class="layui-input">
+            </div>
+        </div>
 
-    <div>标题：</div>
+
+        <div id="layout" >
+            <label>正文</label>
+            <div id="test-editormd">
+                <textarea style="display:none;"></textarea>
+            </div>
+        </div>
+
+
     <div>
-        <input type="text" name="" placeholder="文本框" class="layui-input">
+        <label>标签（使用英文输入状态下的逗号进行分隔）:</label>
+<%--        <div class="tag__select">--%>
+<%--            <input id="tag" type="text" class="completed-input"><button onclick="$('#tagCheckboxPanel').toggle()">选择</button><div id="tagSelectedPanel" class="completed-panel" style="height:160px;"></div><div class="fn__none completed-ck" id="tagCheckboxPanel"><span class="">DICOM</span><span class="">GitHub</span><span class="">Honeyd</span><span class="">Python</span><span class="">Robomaster</span><span class="">c++</span><span class="">git</span><span class="">latex</span><span class="">linux</span><span class="">nohup</span><span class="">stash</span><span class="">ubuntu</span><span class="">中南大学</span><span class="">医学影响</span><span class="">博客</span><span class="">大恒相机驱动</span><span class="">开源</span><span class="">待分类</span><span class="">抢课</span><span class="">数据分析</span><span class="">数据可视化</span><span class="">旅行</span><span class="">日期</span><span class="">深圳中学</span><span class="">直播</span><span class="">脚本</span><span class="">行为树</span><span class="">随记</span><div class="clear"></div></div>--%>
+<%--        </div>--%>
+
+        <div>
+            <input type="text" name="" placeholder="标签" class="layui-input">
+        </div>
     </div>
-    <link rel="stylesheet" href="/back/editor.md/css/editormd.min.css" />
-<%--    <link rel="stylesheet" href="/back/static/css/admin.css" />--%>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="/back/editor.md/editormd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js" integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <% BlogCategoryDao blogTagsDao = new BlogCategoryDao();
+            List<BlogCategory> list = blogTagsDao.selectAll();
+            request.setAttribute("categorys", list); // 将数据列表存储在request作用域中
+        %>
+    <div>
+        <label>分类:</label>
+        <select id="categorySelector">
+            <option value="">无分类</option>
+            <c:forEach items="${categorys}" var="category">
+                <option value="${category.id}">${category.name} (${category.blogNum})</option>
+            </c:forEach>
+        </select>
+    </div>
 
-    <div id="layout">
-        <label>正文</label>
-        <div id="test-editormd"><textarea style="display:none;"></textarea>
+    <div>
+        <label>创建日期（可选，自动请留空）:</label>
+        <input id="createDate" type="datetime-local">
+    </div>
+
+        <div id="layout2" >
+            <label>摘要</label>
+            <div id="test-editormd2">
+                <textarea style="display:none;"></textarea>
+            </div>
         </div>
+
+        <div class="fn__right">
+            <button class="marginRight12" id="cancelDo">取消</button>
+            <button id="unSubmitArticle" class="fn__none marginRight12" onclick="admin.article.unPublish();">移至草稿箱
+            </button>
+            <button class="marginRight12" id="saveArticle">保存草稿归纳</button>
+            <button id="submitArticle">发布</button>
         </div>
-
-        <script type="text/javascript">
-            var testEditor;
-
-            $(function() {
-                testEditor = editormd("test-editormd", {
-                    width   : "95%",
-                    height  : 640,
-                    syncScrolling : "single",
-                    path    : "editor.md/lib/"
-                });
-
-            });
-        </script>
-
+    </div>
 </body>
 </html>

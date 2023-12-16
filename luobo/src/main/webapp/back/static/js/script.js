@@ -9,6 +9,23 @@ function exit(){
     window.location.href = "exit"
 }
 
+function resizeIframe(iframe) {
+    console.log(iframe)
+    try {
+        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        var iframeBody = iframeDocument.body;
+
+
+        // 调整iframe高度以匹配内容高度
+        iframe.style.height = iframeBody.scrollHeight + 'px';
+
+        // 调整iframe宽度以匹配内容宽度（如果需要）
+        iframe.style.width = iframeBody.scrollWidth + 'px';
+    } catch (e) {
+        console.error("Error resizing iframe:", e);
+    }
+}
+
 function changeframe(){
     // 使用 querySelectorAll 选择所有类名为 "highlight" 的元素
     var elements = document.querySelectorAll(".navItem");
@@ -31,3 +48,4 @@ function $(id) {
 window.onload = function() {
     changeframe();
 }
+

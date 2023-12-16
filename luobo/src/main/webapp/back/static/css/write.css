@@ -1,0 +1,40 @@
+.form input[type=text], .form input[type=password], .form textarea, .form select {
+    font-size: 14px;
+    outline: medium none;
+    width: 100%;
+    padding: 6px 12px;
+    height: 34px;
+    box-sizing: border-box;
+    border: 1px solid #e2e2e4;
+    color: #333;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    background-color: #fff;
+}
+
+button, .completed-ck span {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #1fb5ad;
+    border-radius: 4px;
+    background-color: #1fb5ad;
+    color: #fff;
+    height: auto;
+    outline: none;
+    line-height: 18px;
+}
+
+.form>div {
+    margin: 15px 0;
+}

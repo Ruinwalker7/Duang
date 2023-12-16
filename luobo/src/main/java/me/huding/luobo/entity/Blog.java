@@ -14,8 +14,6 @@ public class Blog {
 
     private String title;
 
-    private String author;
-
     private String summary;
 
     private String content;

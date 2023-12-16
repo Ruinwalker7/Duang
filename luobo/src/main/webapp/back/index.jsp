@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
 
 <%
     HttpSession session1 = request.getSession(false); // 获取当前会话，如果不存在则不创建新会话
-
+    System.out.println(session1);
     // 检查会话是否存在以及其中的字段值
     if (session1 != null && session1.getAttribute("user") != null) {
         // loggedIn 字段为 true，用户已登录，继续显示当前页面
@@ -17,14 +17,15 @@
 
 <head>
     <title>后台管理</title>
-    <link href="//cdn.staticfile.org/layui/2.9.0/css/layui.css" rel="stylesheet">
+    <link href="/layui/css/layui.css" rel="stylesheet">
     <script ref="reference" src="/back/static/js/script.js"></script>
+    <!-- <script ref="reference" src="/back/static/js/"></script> -->
     <link rel="stylesheet" type="text/css" href="/back/static/css/style.css">
     <link rel="icon" type="/static/" href="favicon.ico">
 </head>
 <body>
 
-<script src="//cdn.staticfile.org/layui/2.9.0/layui.js"></script>
+<script src="/layui/layui.js"></script>
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
@@ -45,45 +46,43 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item">
-                    <a class="main_left" data-src="/man">首页</a>
-                </li>
+<%--                <li class="layui-nav-item">--%>
+<%--                    <a class="main_left" data-src="/man">首页</a>--%>
+<%--                </li>--%>
                 <li class="layui-nav-item">
                     <a class="main_left" >文章</a>
                     <dl class="layui-nav-child">
                         <dd><a class="navItem" data-src="/back/write.jsp">发布文章</a></dd>
-                        <dd><a class="navItem" data-src="/back/write.jsp">文章管理</a></dd>
-                        <dd><a class="navItem" data-src="/back/write.jsp">草稿归纳</a></dd>
+<%--                        <dd><a class="navItem" data-src="/back/write.jsp">文章管理</a></dd>--%>
+<%--                        <dd><a class="navItem" data-src="/back/write.jsp">草稿归纳</a></dd>--%>
                     </dl>
                 </li>
 
-                <li class="layui-nav-item">
-                    <a class="main_left">通用</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">选项1</a></dd>
-                        <dd><a href="javascript:;">选项2</a></dd>
-                        <dd><a href="javascript:;">选项3</a></dd>
-                    </dl>
-                </li>
+<%--                <li class="layui-nav-item">--%>
+<%--                    <a class="main_left">通用</a>--%>
+<%--                    <dl class="layui-nav-child">--%>
+<%--                        <dd><a href="javascript:;">选项1</a></dd>--%>
+<%--                        <dd><a href="javascript:;">选项2</a></dd>--%>
+<%--                        <dd><a href="javascript:;">选项3</a></dd>--%>
+<%--                    </dl>--%>
+<%--                </li>--%>
 
-                <li class="layui-nav-item">
-                    <a class="main_left"  data-src="/customer">关于</a>
-                </li>
+<%--                <li class="layui-nav-item">--%>
+<%--                    <a class="main_left"  data-src="/customer">关于</a>--%>
+<%--                </li>--%>
 
-                <li class="layui-nav-item">
-                    <a class="main_left"  data-src="/customer">帮助</a>
-                </li>
-
-
+<%--                <li class="layui-nav-item">--%>
+<%--                    <a class="main_left"  data-src="/customer">帮助</a>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>
 
 
-    <div class="layui-body" id="content">
-        <div class="layui-tab-content">
-            <div class="layui-show">
-                <iframe id="mainframe" frameborder="0" scrolling="yes" style="width: 100%" src="/man"> </iframe>
+    <div class="layui-body" id="content" style="padding: 0px">
+        <div class="layui-tab-content" style="padding: 10px;height: 100%">
+            <div class="layui-show" style="height: 100%">
+                <iframe id="mainframe" frameborder="0" scrolling="yes" height="100%" width="100%" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" src="/back/write.jsp"> </iframe>
             </div>
         </div>
     </div>

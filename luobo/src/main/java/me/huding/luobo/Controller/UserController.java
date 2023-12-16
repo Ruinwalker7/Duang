@@ -25,9 +25,6 @@ public class UserController extends HttpServlet {
         try (Scanner scanner = new Scanner(request.getInputStream(), "UTF-8")) {
             json = scanner.useDelimiter("\\A").next();
         }
-//        System.out.println(req);
-//        String username = req.getParameter("username");
-//        String password = req.getParameter("password");
 
         User user  = new Gson().fromJson(json,User.class);
         User user1 = userDao.selectByUsername(user.getUsername());
@@ -52,15 +49,13 @@ public class UserController extends HttpServlet {
             response.getWriter().write(retJson);
             response.sendRedirect("/home");
         }else{
-
             System.out.println(user1);
             Result result = new Result(ResConsts.Code.PASS_ERROR,"用户名或密码错误","");
             String retJson = new Gson().toJson(result);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(retJson);
-//            response.sendRedirect("login.jsp?error=true");
-            return;
+
         }
 
     }

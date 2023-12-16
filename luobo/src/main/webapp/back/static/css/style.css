@@ -4,6 +4,7 @@ body {
     font-family: "黑体", sans-serif;
     color: #333333;
     font-weight: bold;
+    overflow-y: hidden;
 }
 
 .layout {

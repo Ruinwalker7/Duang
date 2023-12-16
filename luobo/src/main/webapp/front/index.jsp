@@ -82,8 +82,8 @@
                     </li>
 
                     <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
-                        <a href="javascript:;">
-                            <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img"> 管理后台
+                        <a>
+                            管理后台
                         </a>
                         <dl class="layui-nav-child">
                             <dd><a href="/login">管理登录</a></dd>
