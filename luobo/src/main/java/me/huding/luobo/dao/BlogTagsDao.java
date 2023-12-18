@@ -3,7 +3,6 @@ package me.huding.luobo.dao;
 import me.huding.luobo.entity.BlogTags;
 import me.huding.luobo.utils.DruidUtil;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlogTagsDao {
-    private DruidUtil dataSource;
-
     public List<BlogTags> selectAll() throws SQLException{
         List<BlogTags> result = new ArrayList<>();
-        try (Connection conn = dataSource.getConnection();
+        try (Connection conn = DruidUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM blog_tags");
              ResultSet rs = pstmt.executeQuery()) {
 

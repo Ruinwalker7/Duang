@@ -2,9 +2,7 @@ package me.huding.luobo.Controller;
 
 import com.google.gson.Gson;
 import me.huding.luobo.config.ResConsts;
-import me.huding.luobo.dao.NoticeDao;
 import me.huding.luobo.dao.youlianDao;
-import me.huding.luobo.entity.Notice;
 import me.huding.luobo.entity.youlian;
 import me.huding.luobo.utils.Result;
 
@@ -19,7 +17,7 @@ import java.util.List;
 
 @WebServlet("/youlian")
 public class youlianController extends HttpServlet {
-    private youlianDao youlianDao1 = new youlianDao();
+    private final youlianDao youlianDao1 = new youlianDao();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

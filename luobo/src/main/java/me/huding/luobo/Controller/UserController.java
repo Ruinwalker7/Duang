@@ -5,7 +5,6 @@ import me.huding.luobo.config.ResConsts;
 import me.huding.luobo.dao.UserDao;
 import me.huding.luobo.entity.User;
 import me.huding.luobo.utils.Result;
-import me.huding.luobo.utils.Result;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 @WebServlet("/user/login")
 public class UserController extends HttpServlet {
-    private UserDao userDao = new UserDao();
+    private final UserDao userDao = new UserDao();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String json = "";
-        try (Scanner scanner = new Scanner(request.getInputStream(), "UTF-8")) {
+        String json;
+        try (Scanner scanner = new Scanner(request.getInputStream(), StandardCharsets.UTF_8)) {
             json = scanner.useDelimiter("\\A").next();
         }
 
@@ -39,7 +39,7 @@ public class UserController extends HttpServlet {
             response.getWriter().write(retJson);
         }
         else if(user.getPassword().equals(user1.getPassword()) ){
-            System.out.println("登录成功："+user.toString());
+            System.out.println("登录成功："+user);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             Result result = new Result(ResConsts.Code.OK,"","");

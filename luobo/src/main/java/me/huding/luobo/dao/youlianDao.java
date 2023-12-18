@@ -1,6 +1,5 @@
 package me.huding.luobo.dao;
 
-import me.huding.luobo.entity.Notice;
 import me.huding.luobo.entity.youlian;
 import me.huding.luobo.utils.DruidUtil;
 

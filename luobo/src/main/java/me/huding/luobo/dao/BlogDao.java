@@ -1,9 +1,7 @@
 package me.huding.luobo.dao;
 
 import me.huding.luobo.entity.Blog;
-import me.huding.luobo.entity.BlogCategory;
 import me.huding.luobo.utils.DruidUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

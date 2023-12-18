@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 
 <html>
@@ -17,23 +17,23 @@
 
 <head>
     <title>后台管理</title>
-    <link href="/layui/css/layui.css" rel="stylesheet">
-    <script ref="reference" src="/back/static/js/script.js"></script>
-    <link rel="stylesheet" type="text/css" href="/back/static/css/style.css">
+    <link href="${pageContext.request.contextPath}/layui/css/layui.css" rel="stylesheet">
+    <script href="reference" src="${pageContext.request.contextPath}/back/static/js/script.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/back/static/css/style.css">
     <link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
-
 </head>
 <body>
 
-<script src="/layui/layui.js"></script>
+
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <a class="layui-logo" style="font-size: large" href="/index" target="_blank">辰的个人博客</a>
+        <a class="layui-logo" style="font-size: large" href="${pageContext.request.contextPath}/index" target="_blank">辰的个人博客</a>
 
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item" lay-unselect="">
-                <a ><img src="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png" class="layui-nav-img">我</a>
+                <a ><img src="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png" class="layui-nav-img" alt="头像">我</a>
             </li>
             <li class="layui-nav-item" lay-unselect="">
                 <a href="/exit">退出</a>
@@ -79,10 +79,10 @@
     </div>
 
 
-    <div class="layui-body" id="content" style="padding: 0px">
+    <div class="layui-body" id="content" style="padding: 0">
         <div class="layui-tab-content" style="padding: 10px;height: 100%">
             <div class="layui-show" style="height: 100%">
-                <iframe id="mainframe" frameborder="0" scrolling="yes" height="100%" width="100%" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" src="/back/write.jsp"> </iframe>
+                <iframe id="mainframe" frameborder="0" scrolling="yes" height="100%" width="100%" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" src="${pageContext.request.contextPath}/back/write.jsp"> </iframe>
             </div>
         </div>
     </div>

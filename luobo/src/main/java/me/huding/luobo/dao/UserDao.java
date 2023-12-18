@@ -1,6 +1,6 @@
 package me.huding.luobo.dao;
 
-import me.huding.luobo.entity.BlogCategory;
+
 import me.huding.luobo.entity.User;
 import me.huding.luobo.utils.DruidUtil;
 
@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserDao {
 
@@ -40,7 +38,7 @@ public class UserDao {
              }
 
         } catch (SQLException e) {
-            System.out.println(e);
+
             throw new RuntimeException(e);
         }
         return user;

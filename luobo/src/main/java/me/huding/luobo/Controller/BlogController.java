@@ -9,7 +9,6 @@ import me.huding.luobo.dao.BlogTagsDao;
 import me.huding.luobo.entity.Blog;
 import me.huding.luobo.entity.BlogCategory;
 import me.huding.luobo.entity.BlogTags;
-import me.huding.luobo.entity.User;
 import me.huding.luobo.utils.Result;
 
 import javax.servlet.ServletException;
@@ -21,17 +20,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 
 @WebServlet("/blog/*")
 public class BlogController extends HttpServlet {
-    private BlogCategoryDao blogCategoryDao = new BlogCategoryDao();
+    private final BlogCategoryDao blogCategoryDao = new BlogCategoryDao();
 
-    private BlogTagsDao blogTagsDao = new BlogTagsDao();
+    private final BlogTagsDao blogTagsDao = new BlogTagsDao();
 
-    private BlogDao blogDao = new BlogDao();
+    private final BlogDao blogDao = new BlogDao();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();

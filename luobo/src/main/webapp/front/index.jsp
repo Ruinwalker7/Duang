@@ -1,6 +1,7 @@
 <%@ page import="me.huding.luobo.entity.Blog" %>
 <%@ page import="java.util.List" %>
 <%@ page import="me.huding.luobo.dao.BlogDao" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE  html>
@@ -15,15 +16,16 @@
     <title>橙子博客</title>
     <meta name="renderer" content="webkit">
     <link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="程序员技术分享博客" />
     <meta name="msapplication-TileColor" content="#0e90d2">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="/layui/css/layui.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/layui/css/layui.css" rel="stylesheet">
     <link rel="stylesheet" href="https://ftp.stackoverflow.wiki/bolo/fontawesome-free-5.14.0-web/css/all.css">
-    <link rel="stylesheet" href="/front/static/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/front/static/css/main.css">
+    <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
+    <script src="${pageContext.request.contextPath}/front/static/js/index.js"></script>
 </head>
 
 
@@ -32,7 +34,7 @@
             <div class="layui-header">
                 <div class="layui-logo layui-hide-xs layui-bg-black layui-nav layui-nav-item">
                     <span class="pull-left" id="blog_name" style="margin-left: 10px">
-                <a class="blog_title" id="site-name" href="/index" style="font-size: 18px">辰的个人博客 👋🏼</a>
+                <a class="blog_title" id="site-name" href="${pageContext.request.contextPath}/index" style="font-size: 18px">辰的个人博客 👋🏼</a>
             </span>
 
 <%--                    <a href="/index">--%>
@@ -46,7 +48,7 @@
                         <i class="layui-icon layui-icon-spread-left"></i>
                     </li>
                     <li class="layui-nav-item layui-hide-xs">
-                        <a href="javascript:;">
+                        <a >
                             <i class="fa-fw fa fa-home"></i>主页</a>
                     </li>
 <%--                    <li class="layui-nav-item layui-hide-xs">--%>
@@ -71,11 +73,12 @@
                 <ul class="layui-nav layui-layout-right">
                     <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
                         <div class="layui-input-wrap">
-                            <input type="text" placeholder="搜索" class="layui-input">
+                            <label>
+                                <input type="text" placeholder="搜索" class="layui-input">
+                            </label>
                             <div class="layui-input-suffix">
                                 <i class="layui-icon layui-icon-search"></i>
                             </div>
-                            </input>
                         </div>
                     </li>
 
@@ -84,7 +87,7 @@
                             管理后台
                         </a>
                         <dl class="layui-nav-child">
-                            <dd><a href="/login">管理登录</a></dd>
+                            <dd><a href="${pageContext.request.contextPath}/login">管理登录</a></dd>
                         </dl>
                     </li>
                 </ul>
@@ -118,7 +121,12 @@
 
     <%
         BlogDao blogDao = new BlogDao();
-        List<Blog> dataList = blogDao.findforIndex(); // 从数据库获取数据
+        List<Blog> dataList; // 从数据库获取数据
+        try {
+            dataList = blogDao.findforIndex();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("dataList", dataList); // 将数据列表存储在request作用域中
     %>
     <div class="recent-posts" id="recent-posts">
@@ -127,7 +135,7 @@
         <article class="layui-card recent-post-item" itemscope itemtype="http://schema.org/BlogPosting" style="flex: auto">
             <div class="post_cover left_radius">
                 <a href="http://blog.chen.szkxy.net:8886/blog/articles/2023/12/03/1701566281284.html" title="linux nohup命令">
-                    <img class="post_bg entered loading" src="${data.coverURL}" data-ll-status="loading">
+                    <img class="post_bg entered loading" src="${data.coverURL}" data-ll-status="loading" alt="${data.title}">
                 </a>
             </div>
             <div class="recent-post-info">
@@ -205,8 +213,7 @@
 
 
 
-        <script src="/layui/layui.js"></script>
-        <script src="/front/static/js/index.js"></script>
+
 
 
     </body>
