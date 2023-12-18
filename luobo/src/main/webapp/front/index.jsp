@@ -1,9 +1,7 @@
 <%@ page import="me.huding.luobo.entity.Blog" %>
 <%@ page import="java.util.List" %>
 <%@ page import="me.huding.luobo.dao.BlogDao" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE  html>
 <html>
@@ -12,11 +10,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料">
-    <meta name="keywords" content="橙子博客">
+    <meta name="keywords" content="辰的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>橙子博客</title>
     <meta name="renderer" content="webkit">
-    <link rel="shortcut icon" type="image/png" href="/front/static/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">

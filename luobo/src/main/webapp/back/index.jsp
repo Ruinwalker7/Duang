@@ -19,9 +19,9 @@
     <title>后台管理</title>
     <link href="/layui/css/layui.css" rel="stylesheet">
     <script ref="reference" src="/back/static/js/script.js"></script>
-    <!-- <script ref="reference" src="/back/static/js/"></script> -->
     <link rel="stylesheet" type="text/css" href="/back/static/css/style.css">
-    <link rel="icon" type="/static/" href="favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
+
 </head>
 <body>
 
@@ -29,11 +29,11 @@
 
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <a class="layui-logo" style="font-size: large" href="/index">辰的个人博客</a>
+        <a class="layui-logo" style="font-size: large" href="/index" target="_blank">辰的个人博客</a>
 
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item" lay-unselect="">
-                <a ><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                <a ><img src="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png" class="layui-nav-img">我</a>
             </li>
             <li class="layui-nav-item" lay-unselect="">
                 <a href="/exit">退出</a>

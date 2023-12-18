@@ -65,7 +65,6 @@ public class BlogDao {
                 Blog data = new Blog();
                 data.setId(rs.getString("id"));
                 data.setTitle(rs.getString("title"));
-//                data.setAuthor(rs.getString("author"));
                 data.setSummary(rs.getString("summary"));
                 data.setPublishTime(rs.getTimestamp("publishTime"));
                 data.setCoverURL(rs.getString("coverURL"));
