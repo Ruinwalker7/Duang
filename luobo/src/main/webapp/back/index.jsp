@@ -11,7 +11,7 @@
         // loggedIn 字段为 true，用户已登录，继续显示当前页面
     } else {
         // loggedIn 字段不为 true，用户未登录，进行重定向到登录页面或其他页面
-        response.sendRedirect("/"); // 重定向到登录页面
+        response.sendRedirect("/login"); // 重定向到登录页面
     }
 %>
 

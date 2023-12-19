@@ -27,11 +27,6 @@
     </servlet-mapping>
 
 
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>index</servlet-name>-->
-<!--        <url-pattern>/</url-pattern>-->
-<!--    </servlet-mapping>-->
-
     <servlet>
         <servlet-name>about</servlet-name>
         <jsp-file>/front/about.jsp</jsp-file>
@@ -120,5 +115,9 @@
         <error-code>504</error-code>
         <location>/error-pages/504.html</location>
     </error-page>
+
+    <session-config>
+        <session-timeout>720</session-timeout>
+    </session-config>
 
 </web-app>

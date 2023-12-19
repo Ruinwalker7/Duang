@@ -6,12 +6,14 @@
 	Cookie[] cookies = request.getCookies();
 	String sessionId = null;
 
+	System.out.println("login.jsp: " + session.getId());
 	System.out.println(cookies);
 	// 查找名为 "JSESSIONID" 的Cookie
 	if (cookies != null) {
 		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("JSESSIONID")) {
+			if (cookie.getName().equals("sessionId")) {
 				sessionId = cookie.getValue();
+				System.out.println("find session's id in cookie:"+sessionId);
 				break;
 			}
 		}
@@ -23,15 +25,19 @@
 		HttpSession sess = myc.getSession(sessionId);
 
 		if (sess != null && sess.getAttribute("user") != null) {
-
-			Cookie sessionCookie = new Cookie("JSESSIONID", session.getId());
+			System.out.println("find correct session!");
+			Cookie sessionCookie = new Cookie("sessionId", session.getId());
 			sessionCookie.setMaxAge(24 * 60 * 60);
 			sessionCookie.setHttpOnly(true);
+			sessionCookie.setPath("/login");
 			response.addCookie(sessionCookie);
 			session.setAttribute("user",sess.getAttribute("user"));
+			if(!sess.getId().equals(session.getId())){
+				sess.invalidate();
+			}
 			response.sendRedirect("/home");
-			// 用户已登录，执行相应的操作
-
+		}else {
+			System.out.println("this session don't login in!");
 		}
 	}
 %>

@@ -30,6 +30,7 @@ public class UserController extends HttpServlet {
 
         private String code;
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String json;
@@ -38,12 +39,15 @@ public class UserController extends HttpServlet {
         }
 
         loginUser user  = new Gson().fromJson(json,loginUser.class);
+        System.out.println("try login session Id: " + request.getSession().getId());
         System.out.println("receive login request"+user);
+        System.out.println("correct code: "+request.getSession().getAttribute("captcha"));
+
         if (!CaptchaUtil.ver(user.getCode(), request)) {
+            System.out.println("Verity code error! Correct code:"+request.getSession().getAttribute("captcha"));
             CaptchaUtil.clear(request);  // 清除session中的验证码
             Result result = new Result(ResConsts.Code.CODE_ERROR,"验证码错误","");
             String retJson = new Gson().toJson(result);
-            System.out.println("Verity code error!");
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(retJson);
@@ -65,9 +69,9 @@ public class UserController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            Cookie sessionCookie = new Cookie("JSESSIONID", session.getId());
+            Cookie sessionCookie = new Cookie("sessionId", session.getId());
             sessionCookie.setMaxAge(24 * 60 * 60);
-            sessionCookie.setHttpOnly(true);
+            sessionCookie.setPath("/login");
             response.addCookie(sessionCookie);
 
             Result result = new Result(ResConsts.Code.OK,"","");
@@ -82,7 +86,6 @@ public class UserController extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(retJson);
-
         }
 
     }
