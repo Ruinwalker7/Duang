@@ -19,7 +19,6 @@ import java.util.List;
 public class NoticeController extends HttpServlet {
     private final NoticeDao noticeDao = new NoticeDao();
 
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<Notice> data = noticeDao.selectAll();

@@ -1,4 +1,40 @@
+<%@ page import="me.huding.luobo.utils.MySessionContext" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
+
+<%
+	// 获取所有的Cookie
+	Cookie[] cookies = request.getCookies();
+	String sessionId = null;
+
+	System.out.println(cookies);
+	// 查找名为 "JSESSIONID" 的Cookie
+	if (cookies != null) {
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("JSESSIONID")) {
+				sessionId = cookie.getValue();
+				break;
+			}
+		}
+	}
+
+	// 判断是否存在Session ID，并进行身份验证
+	if (sessionId != null) {
+		MySessionContext myc= MySessionContext.getInstance();
+		HttpSession sess = myc.getSession(sessionId);
+
+		if (sess != null && sess.getAttribute("user") != null) {
+
+			Cookie sessionCookie = new Cookie("JSESSIONID", session.getId());
+			sessionCookie.setMaxAge(24 * 60 * 60);
+			sessionCookie.setHttpOnly(true);
+			response.addCookie(sessionCookie);
+			session.setAttribute("user",sess.getAttribute("user"));
+			response.sendRedirect("/home");
+			// 用户已登录，执行相应的操作
+
+		}
+	}
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
