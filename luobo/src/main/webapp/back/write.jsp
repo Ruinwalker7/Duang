@@ -39,7 +39,7 @@
 
         <div>
             <label>标签（使用英文输入状态下的逗号进行分隔）:
-                <input type="text" name="" placeholder="标签" class="layui-input">
+                <input id="tags" type="text" name="tags" placeholder="标签" class="layui-input">
             </label>
         </div>
     </div>
@@ -63,7 +63,7 @@
     </div>
 
     <div>
-        <label for="createDate">创建日期（可选，自动请留空）:</label><input id="createDate" type="datetime-local">
+        <label for="createDate">创建日期（可选，自动请留空）:  </label><input id="createDate" type="datetime-local">
     </div>
         <div id="layout2" >
             <label>摘要</label>

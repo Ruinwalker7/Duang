@@ -162,7 +162,7 @@
                                 <span class="article-meta__link"> </span>
                     </span>
                 </div>
-                <div class="content">${data.summary}
+                <div class="content">${data.blogAbstractText}
                 </div>
             </div>
         </article>

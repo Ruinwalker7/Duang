@@ -9,6 +9,7 @@ import me.huding.luobo.dao.BlogTagsDao;
 import me.huding.luobo.entity.Blog;
 import me.huding.luobo.entity.BlogCategory;
 import me.huding.luobo.entity.BlogTags;
+import me.huding.luobo.utils.BlogUtil;
 import me.huding.luobo.utils.Result;
 
 import javax.servlet.ServletException;
@@ -33,9 +34,9 @@ public class BlogController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
-
+        Result result;
         if (pathInfo == null || pathInfo.equals("/")) {
-            Result result = new Result(ResConsts.Code.FAILURE,ResConsts.Msg.SERVER_ERROR,null);
+            result = new Result(ResConsts.Code.FAILURE,ResConsts.Msg.SERVER_ERROR,null);
             String json = new Gson().toJson(result);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
@@ -44,7 +45,7 @@ public class BlogController extends HttpServlet {
         } else if (pathInfo.equals("/category")) {
             try {
                 List<BlogCategory> data = blogCategoryDao.selectAll();
-                Result result = new Result(ResConsts.Code.OK,"",data);
+                result = new Result(ResConsts.Code.OK,"",data);
                 String json = new Gson().toJson(result);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -55,7 +56,7 @@ public class BlogController extends HttpServlet {
         } else if (pathInfo.equals("/blogTags")) {
             try {
                 List<BlogTags> data = blogTagsDao.selectAll();
-                Result result = new Result(ResConsts.Code.OK,"",data);
+                result = new Result(ResConsts.Code.OK,"",data);
                 String json = new Gson().toJson(result);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -66,7 +67,7 @@ public class BlogController extends HttpServlet {
         }  else if (pathInfo.equals("/lunbo")) {
             try {
                 List<Blog> data = blogDao.findLunbo();
-                Result result = new Result(ResConsts.Code.OK,"",data);
+                result = new Result(ResConsts.Code.OK,"",data);
                 String json = new Gson().toJson(result);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -77,7 +78,7 @@ public class BlogController extends HttpServlet {
         } else if (pathInfo.equals("/hotRank")) {
             try {
                 List<Blog> data = blogDao.findHot();
-                Result result = new Result(ResConsts.Code.OK,"",data);
+                result = new Result(ResConsts.Code.OK,"",data);
                 String json = new Gson().toJson(result);
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
@@ -86,9 +87,9 @@ public class BlogController extends HttpServlet {
                 throw new ServletException("Database access error", e);
             }
         }else if (pathInfo.equals("/create")) {
-
+            UUID uuid = UUID.randomUUID();
+            String uuidWithoutDashes = uuid.toString().replace("-", "");
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm").create();
-            // 读取请求体中的JSON数据
             StringBuilder buffer = new StringBuilder();
             BufferedReader reader = request.getReader();
             String line;
@@ -96,23 +97,41 @@ public class BlogController extends HttpServlet {
                 buffer.append(line);
             }
             String jsonData = buffer.toString();
-
             Blog blog  = gson.fromJson(jsonData,Blog.class);
-            blog.setId(UUID.randomUUID().toString());
-            try {
-                blogDao.insert(blog);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+            blog.setId(uuidWithoutDashes);
+            System.out.println(blog);
+
+            String url = BlogUtil.createBlogPost(getServletContext(),blog.getHtml(),blog.getId(),blog.getPublishTime());
+            if(url!=null){
+                blog.setPath(url);
+                int resultnum = 0;
+                try {
+                    resultnum = blogDao.insert(blog);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                if(resultnum==1){
+                    result = new Result(ResConsts.Code.SUCCESS,"",null);
+                }else{
+                    result = new Result(ResConsts.Code.FAILURE,"无法创建博客",null);
+                }
+            }else{
+                result = new Result(ResConsts.Code.FAILURE,"无法创建博客",null);
             }
-            System.out.println("receive login request"+jsonData);
+
+            String json = new Gson().toJson(result);
+            System.out.println(json);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
         }else {
-            Result result = new Result(ResConsts.Code.FAILURE,ResConsts.Msg.SERVER_ERROR,null);
+            // 处理其他情况或返回错误
+            result = new Result(ResConsts.Code.FAILURE,ResConsts.Msg.SERVER_ERROR,null);
             System.out.println("不可用资源");
             String json = new Gson().toJson(result);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
-            // 处理其他情况或返回错误
         }
     }
 }

@@ -14,7 +14,9 @@ public class Blog {
 
     private String title;
 
-    private String summary;
+    private String blogAbstract;
+
+    private String blogAbstractText;
 
     private String content;
 
@@ -26,8 +28,6 @@ public class Blog {
 
     private Timestamp publishTime;
 
-    private String url;
-
     private String signature;
 
     private String categoryID;
@@ -38,11 +38,7 @@ public class Blog {
 
     private String coverURL;
 
-    private int type;
-
     private int status;
-
-    private int statusName;
 
     private String html;
 

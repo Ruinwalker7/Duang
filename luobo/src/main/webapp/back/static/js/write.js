@@ -56,10 +56,13 @@ $(document).ready(function() {
         var data = {
             title: $('#titleInput').val(),
             content: testEditor.getMarkdown(),
-            summary: testEditor2.getPreviewedHTML(),
+            blogAbstract: testEditor2.getPreviewedHTML(),
+            blogAbstractText:testEditor2.getMarkdown(),
             html: testEditor.getPreviewedHTML(),
             publishTime: $('#createDate').val()==""?getCurrentDateTime():$('#createDate').val(),
-            categoryID: $("#categorySelector").val()
+            lastUpdateTime: getCurrentDateTime(),
+            categoryID: $("#categorySelector").val(),
+            tags: $("#tags").val()
         };
 
         console.log(data)

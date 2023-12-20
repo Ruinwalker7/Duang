@@ -1,14 +1,14 @@
 package me.huding.luobo.utils;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MySessionContext {
     private static MySessionContext instance;
-    private HashMap<String, HttpSession> sessionMap;
+    private ConcurrentHashMap<String, HttpSession> sessionMap;
 
     private MySessionContext() {
-        sessionMap = new HashMap<String,HttpSession>();
+        sessionMap = new ConcurrentHashMap<String,HttpSession>();
     }
 
     public static MySessionContext getInstance() {

@@ -103,19 +103,21 @@ $(function() {
 				}
 				return response.json();
 			}).then(data =>{
-				console.log(data)
-				document.getElementById("code").value =""
+				let timestamp;
+
 				document.getElementById("warning1").textContent=data.message
 				document.getElementById("warning1").style.display="block";
 				if (data.code === 0) {
 					window.location.href = "/home"
 				} else if(data.code===2002){
-					var timestamp = new Date().getTime();
+					document.getElementById("code").value =""
+					timestamp = new Date().getTime();
 					captchaImage.src = '/captcha?' + timestamp;
 					console.error('请求失败:', data.code, data.message);
 				} else if(data.code===2001){
+					document.getElementById("code").value =""
 					document.getElementById("password").value =""
-					var timestamp = new Date().getTime();
+					timestamp = new Date().getTime();
 					captchaImage.src = '/captcha?' + timestamp;
 					console.error('请求失败:', data.code, data.message);
 				}
