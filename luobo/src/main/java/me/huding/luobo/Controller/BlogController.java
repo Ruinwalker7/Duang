@@ -102,7 +102,7 @@ public class BlogController extends HttpServlet {
             blog.setId(uuidWithoutDashes);
             System.out.println(blog);
 
-            String url = BlogUtil.createBlogPost(getServletContext(),blog.getHtml(),blog.getId(),blog.getPublishTime());
+            String url = BlogUtil.createBlogPost(getServletContext(),blog,blog.getId(),blog.getPublishTime());
             if(url!=null){
                 blog.setPath(url);
                 int resultnum = 0;

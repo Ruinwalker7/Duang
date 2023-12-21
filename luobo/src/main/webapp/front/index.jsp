@@ -48,7 +48,7 @@
                         <i class="layui-icon layui-icon-spread-left"></i>
                     </li>
                     <li class="layui-nav-item layui-hide-xs">
-                        <a >
+                        <a href="/index">
                             <i class="fa-fw fa fa-home"></i>主页</a>
                     </li>
 <%--                    <li class="layui-nav-item layui-hide-xs">--%>

@@ -52,6 +52,11 @@
                 <li class="layui-nav-item">
                     <a class="main_left" >文章</a>
                     <dl class="layui-nav-child">
+                        <dd><a class="navItem" data-src="/back/blogtable.jsp">管理文章</a></dd>
+                        <%--                        <dd><a class="navItem" data-src="/back/write.jsp">文章管理</a></dd>--%>
+                        <%--                        <dd><a class="navItem" data-src="/back/write.jsp">草稿归纳</a></dd>--%>
+                    </dl>
+                    <dl class="layui-nav-child">
                         <dd><a class="navItem" data-src="/back/write.jsp">发布文章</a></dd>
 <%--                        <dd><a class="navItem" data-src="/back/write.jsp">文章管理</a></dd>--%>
 <%--                        <dd><a class="navItem" data-src="/back/write.jsp">草稿归纳</a></dd>--%>
@@ -82,7 +87,7 @@
     <div class="layui-body" id="content" style="padding: 0">
         <div class="layui-tab-content" style="padding: 10px;height: 100%">
             <div class="layui-show" style="height: 100%">
-                <iframe id="mainframe" frameborder="0" scrolling="yes" height="100%" width="100%" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" src="${pageContext.request.contextPath}/back/write.jsp"> </iframe>
+                <iframe id="mainframe" frameborder="0" scrolling="yes" height="100%" width="100%" onload="this.style.height=(this.contentWindow.document.body.scrollHeight+20)+'px';" src="${pageContext.request.contextPath}/back/blogtable.jsp"> </iframe>
             </div>
         </div>
     </div>

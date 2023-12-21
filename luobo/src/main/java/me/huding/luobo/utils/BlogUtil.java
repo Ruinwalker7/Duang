@@ -1,5 +1,7 @@
 package me.huding.luobo.utils;
 
+import me.huding.luobo.entity.Blog;
+
 import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.ZoneId;
 public class BlogUtil {
 
-    public static String createBlogPost(ServletContext servletContext, String content, String uuid, Timestamp timestamp) {
+    public static String createBlogPost(ServletContext servletContext, Blog blog, String uuid, Timestamp timestamp) {
 
         try {
             // 获取模板
@@ -20,8 +22,11 @@ public class BlogUtil {
             String template = new String(Files.readAllBytes(Paths.get(realPath)), "UTF-8");
 
             // 替换占位符
-            String finalHtml = template.replace("<!-- BLOG_CONTENT -->", content);
-
+            template = template.replace("<!-- BLOG_CONTENT -->", blog.getHtml());
+            template = template.replace("<!-- BLOG_TITLE -->", blog.getTitle());
+            template = template.replace("<!-- BLOG_TAG -->", blog.getTags().replace(","," "));
+            template = template.replace("<!-- BLOG_CREATE_TIME -->", blog.getPublishTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
+            String finalHtml = template.replace("<!-- BLOG_UPDATE_TIME -->",  blog.getLastUpdateTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
             LocalDateTime dateTime = timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
             int year = dateTime.getYear();

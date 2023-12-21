@@ -4,7 +4,7 @@ var today = new Date();
 var year = today.getFullYear();
 var month = today.getMonth();
 var data = today.getDate();
-
+var content;
 function exit(){
     window.location.href = "exit"
 }
@@ -35,9 +35,16 @@ function changeframe(){
     elements.forEach(function(element) {
         element.addEventListener('click', function() {
             frame.setAttribute("src",this.getAttribute("data-src"))
+
             })
     })
-    var content = document.getElementById("content")
+    frame.addEventListener('load', function() {
+        console.log('Iframe loaded!');
+        frame.style.height = (content.clientHeight-10)+"px";
+        console.log(frame.style.height)
+        // 在这里执行其他操作
+    });
+    content = document.getElementById("content")
     frame.style.height = (content.clientHeight-10)+"px";
 }
 

@@ -18,6 +18,7 @@
 	<link href="/layui/css/layui.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://ftp.stackoverflow.wiki/bolo/fontawesome-free-5.14.0-web/css/all.css">
 	<link rel="stylesheet" href="/front/static/css/main.css">
+	<link rel="stylesheet" href="/front/static/css/base.css">
 	<script src="/layui/layui.js"></script>
 <!--	<script src="/front/static/js/index.js"></script>-->
 </head>
@@ -38,7 +39,7 @@
 				<i class="layui-icon layui-icon-spread-left"></i>
 			</li>
 			<li class="layui-nav-item layui-hide-xs">
-				<a >
+				<a href="/index">
 					<i class="fa-fw fa fa-home"></i>主页</a>
 			</li>
 		</ul>
@@ -72,7 +73,26 @@
 <main class="layout_post" id="content-inner">
 	<article id="post">
 		<div class="article">
+			<div class="ft__center">
+				<div class="article__meta">
+					<time>
+						<!-- BLOG_CREATE_TIME -->  / <!-- BLOG_UPDATE_TIME -->
+					</time>
+					/ <!-- BLOG_TAG -->
+<!--					<a rel="tag" href=""></a> &nbsp;		标签-->
+<!--					<a rel="tag" href=""></a> &nbsp;-->
+				</div>
+				<h2 class="article__title">
+					<!-- BLOG_TITLE -->
+				</h2>
+			</div>
+
+
+			<div class="wrapper">
+			<section id="article-container">
 			<!-- BLOG_CONTENT -->
+			</section>
+			</div>
 		</div>
 	</article>
 </main>
