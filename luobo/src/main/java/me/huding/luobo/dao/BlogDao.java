@@ -64,7 +64,7 @@ public class BlogDao {
         List<Blog> result = new ArrayList<>();
         try (Connection conn = DruidUtil.getConnection();
 
-             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,blogAbstract,publishTime,coverURL,tags,readNum,commentNum from blog WHERE status = 0 order by publishTime desc limit 6"
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,blogAbstract,publishTime,coverURL,tags,readNum,commentNum,path from blog WHERE status = 0 order by publishTime desc limit 6"
              );
              ResultSet rs = pstmt.executeQuery()) {
 
@@ -78,6 +78,7 @@ public class BlogDao {
                 data.setTags(rs.getString("tags"));
                 data.setReadNum(rs.getInt("readNum"));
                 data.setCommentNum(rs.getInt("commentNum"));
+                data.setPath(rs.getString("path"));
                 result.add(data);
             }
         }

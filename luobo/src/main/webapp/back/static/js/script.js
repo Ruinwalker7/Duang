@@ -38,7 +38,7 @@ function changeframe(){
             })
     })
     var content = document.getElementById("content")
-    frame.style.height = (content.clientHeight-80)+"px";
+    frame.style.height = (content.clientHeight-10)+"px";
 }
 
 function $(id) {

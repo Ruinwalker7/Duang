@@ -73,7 +73,7 @@ $(document).ready(function() {
         $.ajax({
             url: '/blog/create',
             type: 'POST',
-            contentType: 'application/json',
+            contentType: 'application/json; charset=UTF-8',
             data: jsonData,
             success: function(response) {
                 console.log('Success:', response);

@@ -71,16 +71,16 @@
                 </ul>
 
                 <ul class="layui-nav layui-layout-right">
-                    <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
-                        <div class="layui-input-wrap">
-                            <label>
-                                <input type="text" placeholder="搜索" class="layui-input">
-                            </label>
-                            <div class="layui-input-suffix">
-                                <i class="layui-icon layui-icon-search"></i>
-                            </div>
-                        </div>
-                    </li>
+<%--                    <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">--%>
+<%--                        <div class="layui-input-wrap">--%>
+<%--                            <label>--%>
+<%--                                <input type="text" placeholder="搜索" class="layui-input">--%>
+<%--                            </label>--%>
+<%--                            <div class="layui-input-suffix">--%>
+<%--                                <i class="layui-icon layui-icon-search"></i>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </li>--%>
 
                     <li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
                         <a>
@@ -134,16 +134,16 @@
 
         <article class="layui-card recent-post-item" itemscope itemtype="http://schema.org/BlogPosting" style="flex: auto">
             <div class="post_cover left_radius">
-                <a href="http://blog.chen.szkxy.net:8886/blog/articles/2023/12/03/1701566281284.html" title="linux nohup命令">
+                <a href="${data.path}" title="linux nohup命令">
                     <img class="post_bg entered loading" src="${data.coverURL}" data-ll-status="loading" alt="${data.title}">
                 </a>
             </div>
             <div class="recent-post-info">
-                <a class="article-title" href="http://blog.chen.szkxy.net:8886/blog/articles/2023/12/03/1701566281284.html" title="${data.title}">${data.title}</a>
+                <a class="article-title" href="${data.path}" title="${data.title}">${data.title}</a>
                 <div class="article-meta-wrap">
                     <time class="post-meta__date" title="">
                         <i class="far fa-calendar-alt"></i>
-                            ${data.publishTime}
+                            ${data.publishTime.toLocalDateTime().year}-${data.publishTime.toLocalDateTime().month.value}-${data.publishTime.toLocalDateTime().dayOfMonth} ${data.publishTime.toLocalDateTime().hour}:${data.publishTime.toLocalDateTime().minute}
                     </time>
                     <span class="article-meta"><span class="article-meta__separator">|</span>
                             <i class="fas fa-boxes article-meta__icon"></i>
@@ -155,31 +155,56 @@
                     <span class="article-meta tags">
                                 <span class="article-meta__separator">|</span>
                                 <i class="fas fa-tag article-meta__icon"></i>
-                                <a class="article-meta__tags" href="http://blog.chen.szkxy.net:8886/blog/tags/linux">${data.tags}</a>
+                                <a class="article-meta__tags" >${data.tags}</a>
 <%--                                <span class="article-meta__link"> </span>--%>
 <%--                                <i class="fas fa-tag article-meta__icon"></i>--%>
 <%--                                <a class="article-meta__tags" href="http://blog.chen.szkxy.net:8886/blog/tags/nohup">nohup</a>--%>
                                 <span class="article-meta__link"> </span>
                     </span>
                 </div>
-                <div class="content">${data.blogAbstractText}
+                <div class="content">${data.blogAbstract}
                 </div>
             </div>
         </article>
 
+
     </c:forEach>
     </div>
-
             </div>
-
-            <div class="layui-col-md4">
-                <div class=" layui-card ">
-                    <div class="layui-card-header ">文章分类</div>
-                    <div class="layui-card-body ">
-                        结合 layui 的栅格系统<br> 轻松实现响应式布局
+            <div class="layui-col-md4" >
+            <div class="aside_content" id="aside_content">
+                <div class="card-widget card-info">
+                    <div class="card-content">
+                        <div class="card-info-avatar is-center"><img class="avatar-img entered loaded" onerror="this.onerror=null;this.src=null;" alt="avatar" src="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png" referrerpolicy="origin" data-ll-status="loaded">
+                            <div class="author-info__name">辰的个人博客</div>
+                            <div class="author-info__description">一个独处的小空间</div>
+                        </div>
+                        <div class="card-info-data">
+                            <div class="card-info-data-item is-center"><a href="/index">
+                                <div class="headline">文章</div>
+                                <div class="length_num">${dataList.size()}</div>
+                            </a></div>
+<%--                            <div class="card-info-data-item is-center"><a href="http://blog.chen.szkxy.net:8886/blog/categories.html">--%>
+<%--                                <div class="headline">分类</div>--%>
+<%--                                <div class="length_num">3</div>--%>
+<%--                            </a></div>--%>
+<%--                            <div class="card-info-data-item is-center"><a href="http://blog.chen.szkxy.net:8886/blog/tags.html">--%>
+<%--                                <div class="headline">标签</div>--%>
+<%--                                <div class="length_num">20</div>--%>
+<%--                            </a></div>--%>
+                        </div>
+                        <div class="card-info-bookmark is-center">
+                            <button class="button--animated" id="bookmark-it" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button>
+                        </div>
+                        <div class="card-info-social-icons is-center">
+                            <a class="social-icon" target="_blank" title="Github" href="https://github.com/Ruinwalker7">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
+                </div>
+            </div>
 <%--                <div class="layui-card ">--%>
 <%--                    <div class="layui-card-header ">最新文章</div>--%>
 <%--                    <div class="layui-card-body ">--%>
@@ -209,10 +234,6 @@
 <%--                </div>--%>
             </div>
         </div>
-
-
-
-
 
 
     </body>

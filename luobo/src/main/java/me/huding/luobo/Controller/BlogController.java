@@ -87,6 +87,7 @@ public class BlogController extends HttpServlet {
                 throw new ServletException("Database access error", e);
             }
         }else if (pathInfo.equals("/create")) {
+            request.setCharacterEncoding("UTF-8");
             UUID uuid = UUID.randomUUID();
             String uuidWithoutDashes = uuid.toString().replace("-", "");
             Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm").create();
