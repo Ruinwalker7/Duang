@@ -193,9 +193,9 @@
 <%--                                <div class="length_num">20</div>--%>
 <%--                            </a></div>--%>
                         </div>
-                        <div class="card-info-bookmark is-center">
-                            <button class="button--animated" id="bookmark-it" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button>
-                        </div>
+<%--                        <div class="card-info-bookmark is-center">--%>
+<%--                            <button class="button--animated" id="bookmark-it" title="加入书签"><i class="fas fa-bookmark"></i><span>加入书签</span></button>--%>
+<%--                        </div>--%>
                         <div class="card-info-social-icons is-center">
                             <a class="social-icon" target="_blank" title="Github" href="https://github.com/Ruinwalker7">
                                 <i class="fab fa-github"></i>

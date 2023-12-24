@@ -10,7 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlogDao {
-
+    public int deleteById(String id) throws  SQLException{
+        int result=0;
+        String sql = "DELETE FROM blog WHERE id = ?";
+        try (Connection conn = DruidUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1,id);
+            result = pstmt.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     public int insert(Blog blog) throws SQLException {
         int result=0;
         String sql = "INSERT INTO blog VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -64,7 +75,7 @@ public class BlogDao {
         List<Blog> result = new ArrayList<>();
         try (Connection conn = DruidUtil.getConnection();
 
-             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,blogAbstract,publishTime,coverURL,tags,readNum,commentNum,path from blog WHERE status = 0 order by publishTime desc limit 6"
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,blogAbstract,publishTime,coverURL,tags,readNum,commentNum,path from blog WHERE status = 0 order by publishTime"
              );
              ResultSet rs = pstmt.executeQuery()) {
 
@@ -85,6 +96,31 @@ public class BlogDao {
         return result;
     }
 
+    public List<Blog> findforBlogTable() throws SQLException {
+        List<Blog> result = new ArrayList<>();
+        try (Connection conn = DruidUtil.getConnection();
+
+             PreparedStatement pstmt = conn.prepareStatement("SELECT b.id,b.title,b.blogAbstract,b.publishTime,b.coverURL,b.tags,b.readNum,b.commentNum,b.path,c.name from blog as b, category as c  WHERE c.id = b.categoryID order by publishTime"
+             );
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Blog data = new Blog();
+                data.setId(rs.getString("b.id"));
+                data.setTitle(rs.getString("b.title"));
+                data.setBlogAbstract(rs.getString("b.blogAbstract"));
+                data.setPublishTime(rs.getTimestamp("b.publishTime"));
+                data.setCoverURL(rs.getString("b.coverURL"));
+                data.setTags(rs.getString("b.tags"));
+                data.setReadNum(rs.getInt("b.readNum"));
+                data.setCommentNum(rs.getInt("b.commentNum"));
+                data.setPath(rs.getString("b.path"));
+                data.setCategoryID(rs.getString("c.name"));
+                result.add(data);
+            }
+        }
+        return result;
+    }
 
     public List<Blog> findHot() throws SQLException {
         List<Blog> result = new ArrayList<>();
