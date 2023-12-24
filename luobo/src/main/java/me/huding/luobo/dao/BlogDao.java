@@ -74,11 +74,9 @@ public class BlogDao {
     public List<Blog> findforIndex() throws SQLException {
         List<Blog> result = new ArrayList<>();
         try (Connection conn = DruidUtil.getConnection();
-
-             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,blogAbstract,publishTime,coverURL,tags,readNum,commentNum,path from blog WHERE status = 0 order by publishTime"
+             PreparedStatement pstmt = conn.prepareStatement("SELECT id,title,blogAbstract,publishTime,coverURL,tags,readNum,commentNum,path from blog WHERE status = 0 order by publishTime desc "
              );
              ResultSet rs = pstmt.executeQuery()) {
-
             while (rs.next()) {
                 Blog data = new Blog();
                 data.setId(rs.getString("id"));

@@ -81,6 +81,22 @@ function getFirstImageSrc(htmlString) {
     return img ? img.src : null;
 }
 
+function randomDate(start, end) {
+    // 生成随机时间戳
+    var date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
+    // 格式化日期
+    var dd = String(date.getDate()).padStart(2, '0');
+    var mm = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，因此需要+1
+    var yyyy = date.getFullYear();
+
+    return yyyy + mm + dd;
+}
+
+// 定义起始日期
+var startDate = new Date(2017, 10, 4); // 月份从0开始，10表示11月
+// 定义结束日期为当前日期
+var endDate = new Date();
 
 
 $(document).ready(function() {
@@ -90,6 +106,10 @@ $(document).ready(function() {
         var htmlString = testEditor.getPreviewedHTML();
         var firstImageSrc = getFirstImageSrc(htmlString);
         console.log(firstImageSrc); // 输出：image1.jpg
+        if(firstImageSrc == null){
+            var randomDateString = randomDate(startDate, endDate);
+            firstImageSrc = "https://b3logfile.com/bing/"+randomDateString+".jpg"
+        }
         // 使用jQuery简化数据收集
         var data = {
             title: $('#titleInput').val(),

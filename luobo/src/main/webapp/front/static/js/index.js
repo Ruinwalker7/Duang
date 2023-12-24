@@ -103,7 +103,7 @@ doAjax( api.NOTICE_SHOW_URL ,{},function (res){
 //轮播
 doAjax(api.BLOG_LUNBO_URL,{},function (res){
     res.data.forEach(function(element) {
-        var newDiv = $('<div><img width="100%" src="'+ element.coverURL+'"></div>')
+        var newDiv = $('<div><a href="'+element.path+'"><img width="100%" src="'+ element.coverURL+'"></a></div>')
         $('#carousel').append(newDiv)
     });
 
@@ -113,7 +113,7 @@ doAjax(api.BLOG_LUNBO_URL,{},function (res){
         var inst = carousel.render({
             elem: '#ID-carousel-demo-image',
             width: '100%',
-            height: '360px',
+            height: '400px',
             interval: 3000,
         });
     });

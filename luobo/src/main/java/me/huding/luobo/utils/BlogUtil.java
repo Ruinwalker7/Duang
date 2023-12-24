@@ -22,6 +22,7 @@ public class BlogUtil {
             String template = new String(Files.readAllBytes(Paths.get(realPath)), "UTF-8");
 
             // 替换占位符
+            template = template.replace("<!-- BLOG_COVER_IMAGE -->", blog.getCoverURL());
             template = template.replace("<!-- BLOG_CONTENT -->", blog.getHtml());
             template = template.replace("<!-- BLOG_TITLE -->", blog.getTitle());
             template = template.replace("<!-- BLOG_TAG -->", blog.getTags().replace(","," "));
