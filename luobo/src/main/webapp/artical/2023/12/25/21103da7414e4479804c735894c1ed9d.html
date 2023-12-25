@@ -1,0 +1,141 @@
+<!DOCTYPE  html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料">
+	<meta name="keywords" content="辰的博客">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>橙子博客</title>
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="程序员技术分享博客" />
+	<meta name="msapplication-TileColor" content="#0e90d2">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="/layui/css/layui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://ftp.stackoverflow.wiki/bolo/fontawesome-free-5.14.0-web/css/all.css">
+	<link rel="stylesheet" href="/front/static/css/main.css">
+	<link rel="stylesheet" href="/front/static/css/base.css">
+	<script src="/layui/layui.js"></script>
+<!--	<script src="/front/static/js/index.js"></script>-->
+</head>
+
+
+<body>
+<div class="layui-layout layui-layout-admin" style="height: 60px">
+	<div class="layui-header">
+		<div class="layui-logo layui-hide-xs layui-bg-black layui-nav layui-nav-item">
+                    <span class="pull-left" id="blog_name" style="margin-left: 10px">
+                <a class="blog_title" id="site-name" href="/index" style="font-size: 18px">辰的个人博客 👋🏼</a>
+            </span>
+		</div>
+		<!-- 头部区域（可配合layui 已有的水平导航） -->
+		<ul class="layui-nav layui-layout-left">
+			<!-- 移动端显示 -->
+			<li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+				<i class="layui-icon layui-icon-spread-left"></i>
+			</li>
+			<li class="layui-nav-item layui-hide-xs">
+				<a href="/index">
+					<i class="fa-fw fa fa-home"></i>主页</a>
+			</li>
+		</ul>
+
+		<ul class="layui-nav layui-layout-right">
+<!--			<li class="layui-nav-item layui-hide layui-show-sm-inline-block ">-->
+<!--				<div class="layui-input-wrap">-->
+<!--					<label>-->
+<!--						<input type="text" placeholder="搜索" class="layui-input">-->
+<!--					</label>-->
+<!--					<div class="layui-input-suffix">-->
+<!--						<i class="layui-icon layui-icon-search"></i>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</li>-->
+
+			<li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+				<a>
+					管理后台
+				</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/login">管理登录</a></dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="web_bg" data-type="color"></div>
+
+<div class="article__top" style="background-image: url(http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/10/08/20/25/809fbff0-424e-432a-91d4-a4e2936080b6.jpg)">
+	<div style="background-image: url(http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/10/08/20/25/809fbff0-424e-432a-91d4-a4e2936080b6.jpg)"></div>
+	<canvas id="articleTop" width="1345" height="476"></canvas>
+</div>
+
+<main class="layout_post" id="content-inner">
+	<article id="post">
+		<div class="article">
+			<div class="ft__center">
+				<div class="article__meta">
+					<time>
+						2023-12-25  / 2023-12-25
+					</time>
+					/ c++ 日期
+<!--					<a rel="tag" href=""></a> &nbsp;		标签-->
+<!--					<a rel="tag" href=""></a> &nbsp;-->
+				</div>
+				<h2 class="article__title">
+					[开发记录]c++时钟
+				</h2>
+			</div>
+
+
+			<div class="wrapper">
+			<section id="article-container">
+			<p><img src="http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/10/08/20/25/809fbff0-424e-432a-91d4-a4e2936080b6.jpg" alt="P1023264.jpg"></p>
+<h3 id="h3--chrono-"><a name="时间工具chrono库" class="reference-link"></a><span class="header-link octicon octicon-link"></span>时间工具chrono库</h3><p><strong>chrono定义了三种主要类型以及常用工具：</strong></p>
+<ul>
+<li><strong>时钟</strong></li><li><strong>时长</strong></li><li><strong>时间点</strong></li></ul>
+<p><strong><em>时钟(Clock)</em></strong> 要求：</p>
+<p><strong><em>平凡时钟(TrivialClock)</em></strong> 要求：</p>
+<ul>
+<li><strong>满足*</strong>时钟*要求</li></ul>
+<h4 id="h4-u65F6u949F"><a name="时钟" class="reference-link"></a><span class="header-link octicon octicon-link"></span>时钟</h4><p><strong>时钟由起点（或纪元）及计次频率(1分钟，1秒或者1毫秒)组成。</strong></p>
+<h5 id="h5--code-system_clock-code-"><a name="<code>system_clock</code>" class="reference-link"></a><span class="header-link octicon octicon-link"></span><code>system_clock</code></h5><p><strong>std::chrono::system_clock 表示系统范围的实时壁钟。其不一定单调，系统时间可以被调节，它是**</strong>唯一有能力映射到c风格时间<strong>(ctime.h)的C++时钟，满足</strong>平凡时钟要求**</p>
+<p><strong><em>纪元</em></strong>：从协调世界时 (UTC) 1970 年 1 月 1 日星期四 00:00:00 开始的时间，不计闰秒</p>
+<p><strong>成员函数：</strong></p>
+<blockquote>
+<p><code>std::chrono::system_clock::now()</code></p>
+<p><strong>返回值：当前时间的时间点</strong></p>
+<p><code>std::chrono::system_clock::to_time_t( const time_point&amp; t )</code></p>
+<p><strong>参数：要转换的时间点</strong></p>
+<p><strong>返回值：返回t的</strong><code>std::time_t</code>值，注意<code>time_t</code>的精度很低，只有秒</p>
+</blockquote>
+<h5 id="h5--code-std-chrono-steady_clock-code-"><a name="<code>std::chrono::steady_clock</code>" class="reference-link"></a><span class="header-link octicon octicon-link"></span><code>std::chrono::steady_clock</code></h5><p><strong>表示单调时钟。此时钟的时间点无法减少，因为物理时间向前移动。此时钟与壁钟时间无关，且最适于度量间隔。</strong></p>
+<h4 id="h4-u65F6u95F4u70B9"><a name="时间点" class="reference-link"></a><span class="header-link octicon octicon-link"></span>时间点</h4><h5 id="h5--code-std-chrono-time_point-code-"><a name="<code>std::chrono::time_point</code>" class="reference-link"></a><span class="header-link octicon octicon-link"></span><code>std::chrono::time_point</code></h5><p><code>std::chrono::time_point</code> 表示时间中的一个点。它被实现成如同存储一个 <code>Duration</code> 类型的自 <code>Clock</code> 的纪元起始开始的时间间隔的值。</p>
+<p>时间点与时间点相减返回时长</p>
+<p>时间点与时长加减返回时间点</p>
+<h4 id="h4-u65F6u957F"><a name="时长" class="reference-link"></a><span class="header-link octicon octicon-link"></span>时长</h4><p><strong>时长由时间跨度</strong>组成，定义为某时间单位的某个计次数。例如，“42 秒”可表示为由 42 个 1 秒时间点位的计次所组成的时长。</p>
+<h5 id="h5--code-std-chrono-duration-code-"><a name="<code>std::chrono::duration</code>" class="reference-link"></a><span class="header-link octicon octicon-link"></span><code>std::chrono::duration</code></h5><pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="kwd">template</span><span class="pun">&lt;</span></code></li><li class="L1"><code><span class="pln">    </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Rep</span><span class="pun">,</span></code></li><li class="L2"><code><span class="pln">    </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">Period</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> std</span><span class="pun">::</span><span class="pln">ratio</span><span class="pun">&lt;</span><span class="lit">1</span><span class="pun">&gt;</span></code></li><li class="L3"><code><span class="pun">&gt;</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> duration</span><span class="pun">;</span></code></li></ol></pre><p><strong>成员类型：</strong></p>
+<ul>
+<li><strong>rep：计次数的数据类型</strong></li><li><strong>period：计次周期的</strong> <a href="https://zh.cppreference.com/w/cpp/numeric/ratio/ratio">std::ratio</a>（即每次的秒数）(默认是1秒)</li></ul>
+<h6 id="h6-u6210u5458u51FDu6570"><a name="成员函数" class="reference-link"></a><span class="header-link octicon octicon-link"></span>成员函数</h6><p><strong>构造函数：</strong></p>
+<ol>
+<li><strong>构造函数的</strong> <code>const Rep2&amp;</code> 能隐式转换为rep（时常的计次类型）且满足下列条件才参与重载决议<br><code>std::chrono::treat_as_floating_point&lt;rep&gt;::value</code> 为 true ，或<br><code>std::chrono::treat_as_floating_point&lt;Rep2&gt;::value</code> 为 false 。</li></ol>
+<p><code>count()</code></p>
+<p><strong>计数函数，返回此 duration 的计次数。</strong></p>
+
+			</section>
+			</div>
+		</div>
+	</article>
+</main>
+
+
+
+</body>
+
+</html>

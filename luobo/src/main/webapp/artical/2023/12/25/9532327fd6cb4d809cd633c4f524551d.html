@@ -1,0 +1,124 @@
+<!DOCTYPE  html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料">
+	<meta name="keywords" content="辰的博客">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>橙子博客</title>
+	<meta name="renderer" content="webkit">
+	<link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="程序员技术分享博客" />
+	<meta name="msapplication-TileColor" content="#0e90d2">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="/layui/css/layui.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://ftp.stackoverflow.wiki/bolo/fontawesome-free-5.14.0-web/css/all.css">
+	<link rel="stylesheet" href="/front/static/css/main.css">
+	<link rel="stylesheet" href="/front/static/css/base.css">
+	<script src="/layui/layui.js"></script>
+<!--	<script src="/front/static/js/index.js"></script>-->
+</head>
+
+
+<body>
+<div class="layui-layout layui-layout-admin" style="height: 60px">
+	<div class="layui-header">
+		<div class="layui-logo layui-hide-xs layui-bg-black layui-nav layui-nav-item">
+                    <span class="pull-left" id="blog_name" style="margin-left: 10px">
+                <a class="blog_title" id="site-name" href="/index" style="font-size: 18px">辰的个人博客 👋🏼</a>
+            </span>
+		</div>
+		<!-- 头部区域（可配合layui 已有的水平导航） -->
+		<ul class="layui-nav layui-layout-left">
+			<!-- 移动端显示 -->
+			<li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+				<i class="layui-icon layui-icon-spread-left"></i>
+			</li>
+			<li class="layui-nav-item layui-hide-xs">
+				<a href="/index">
+					<i class="fa-fw fa fa-home"></i>主页</a>
+			</li>
+		</ul>
+
+		<ul class="layui-nav layui-layout-right">
+<!--			<li class="layui-nav-item layui-hide layui-show-sm-inline-block ">-->
+<!--				<div class="layui-input-wrap">-->
+<!--					<label>-->
+<!--						<input type="text" placeholder="搜索" class="layui-input">-->
+<!--					</label>-->
+<!--					<div class="layui-input-suffix">-->
+<!--						<i class="layui-icon layui-icon-search"></i>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</li>-->
+
+			<li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
+				<a>
+					管理后台
+				</a>
+				<dl class="layui-nav-child">
+					<dd><a href="/login">管理登录</a></dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div id="web_bg" data-type="color"></div>
+
+<div class="article__top" style="background-image: url(http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/12/19/21/23/e31ffce8-4059-43f6-9cc6-b0809f434e67.jpg)">
+	<div style="background-image: url(http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/12/19/21/23/e31ffce8-4059-43f6-9cc6-b0809f434e67.jpg)"></div>
+	<canvas id="articleTop" width="1345" height="476"></canvas>
+</div>
+
+<main class="layout_post" id="content-inner">
+	<article id="post">
+		<div class="article">
+			<div class="ft__center">
+				<div class="article__meta">
+					<time>
+						2023-12-25  / 2023-12-25
+					</time>
+					/ linux nohup
+<!--					<a rel="tag" href=""></a> &nbsp;		标签-->
+<!--					<a rel="tag" href=""></a> &nbsp;-->
+				</div>
+				<h2 class="article__title">
+					linux nohup命令
+				</h2>
+			</div>
+
+
+			<div class="wrapper">
+			<section id="article-container">
+			<p><img src="http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/12/19/21/23/e31ffce8-4059-43f6-9cc6-b0809f434e67.jpg" alt=""></p>
+<h1 id="h1-linux-nohup-"><a name="linux nohup命令" class="reference-link"></a><span class="header-link octicon octicon-link"></span>linux nohup命令</h1><p><strong>在深度学习中，经常会遇到需要远程训练的情况，如果使用普通的终端命令进行训练，一旦终端断开，训练的进程也会被终止，所以我们需要使用</strong><code>nohup</code>命令将进程与终端不绑定在一起</p>
+<p><strong>nohup</strong> 英文全称 no hang up（不挂起）</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">nohup </span><span class="typ">Command</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="typ">Arg</span><span class="pln"> </span><span class="pun">…</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">[　&amp;</span><span class="pln"> </span><span class="pun">]</span></code></li></ol></pre><p><strong>参数说明</strong>：</p>
+<p><strong>Command</strong>：要执行的命令。</p>
+<p><strong>Arg</strong>：一些参数，可以指定输出文件。</p>
+<p><strong>&amp;</strong>：让命令在后台执行，终端退出后命令仍旧执行。</p>
+<p><code>nohup</code> 指令只是让运行命令与终端无关，&amp;才是实现后台运行的指令</p>
+<h3 id="h3-u5E38u7528u793Au4F8B"><a name="常用示例" class="reference-link"></a><span class="header-link octicon octicon-link"></span>常用示例</h3><pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">nohup </span><span class="pun">/</span><span class="pln">root</span><span class="pun">/</span><span class="pln">runoob</span><span class="pun">.</span><span class="pln">sh </span><span class="pun">&gt;</span><span class="pln"> runoob</span><span class="pun">.</span><span class="pln">log </span><span class="lit">2</span><span class="pun">&gt;&amp;</span><span class="lit">1</span><span class="pln"> </span><span class="pun">&amp;</span></code></li></ol></pre><p><strong>2&gt;&amp;1</strong> 解释：</p>
+<p><strong>将标准错误 2 重定向到标准输出 &amp;1 ，标准输出 &amp;1 再被重定向输入到 runoob.log 文件中。</strong></p>
+<ul>
+<li><strong>0 – stdin (standard input，标准输入)</strong></li><li><strong>1 – stdout (standard output，标准输出)</strong></li><li><strong>2 – stderr (standard error，标准错误输出)</strong></li></ul>
+<h3 id="h3-u5982u4F55u5173u95EDu540Eu53F0u7684u7A0Bu5E8F"><a name="如何关闭后台的程序" class="reference-link"></a><span class="header-link octicon octicon-link"></span>如何关闭后台的程序</h3><p><strong>需要使用查找进程的指令先找到进程的PID</strong></p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">ps </span><span class="pun">-</span><span class="pln">aux </span><span class="pun">|</span><span class="pln"> grep </span><span class="pun">进程关键字</span></code></li><li class="L1"><code><span class="pln">ex</span><span class="pun">:</span></code></li><li class="L2"><code><span class="pln">ps </span><span class="pun">-</span><span class="pln">aux </span><span class="pun">|</span><span class="pln"> grep </span><span class="str">"runoob.sh"</span><span class="pln"> </span></code></li><li class="L3"><code><span class="pun">​</span></code></li><li class="L4"><code><span class="com"># kill进程</span></code></li><li class="L5"><code><span class="pln">kill </span><span class="pun">-</span><span class="lit">9</span><span class="pln">  </span><span class="pun">进程号</span><span class="pln">PID</span></code></li></ol></pre><h3 id="h3--python-"><a name="和python配合使用" class="reference-link"></a><span class="header-link octicon octicon-link"></span>和python配合使用</h3><p><strong>python输出的时候会有一个缓冲，因此无法实时将输出存储到log文件中，因此需要在python运行命令中添加</strong><code>-u</code>参数，例如：</p>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pln">nohup python </span><span class="pun">-</span><span class="pln">u train</span><span class="pun">.</span><span class="pln">py </span><span class="pun">&gt;</span><span class="pln"> train</span><span class="pun">.</span><span class="pln">py </span><span class="lit">2</span><span class="pun">&gt;&amp;</span><span class="lit">1</span><span class="pln"> </span><span class="pun">&amp;</span></code></li></ol></pre><p>1111</p>
+
+			</section>
+			</div>
+		</div>
+	</article>
+</main>
+
+
+
+</body>
+
+</html>

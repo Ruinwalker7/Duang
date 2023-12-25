@@ -101,7 +101,8 @@ public class BlogController extends HttpServlet {
             }
             String jsonData = buffer.toString();
             Blog blog  = gson.fromJson(jsonData,Blog.class);
-            if(blog.getId()==null){
+            System.out.println("'"+blog.getId()+"'");
+            if(blog.getId().isBlank()){
                 blog.setId(uuidWithoutDashes);
                 System.out.println(blog);
                 String url = BlogUtil.createBlogPost(getServletContext(),blog,blog.getId(),blog.getPublishTime());
@@ -121,7 +122,6 @@ public class BlogController extends HttpServlet {
                 }else{
                     result = new Result(ResConsts.Code.FAILURE,"无法创建博客",null);
                 }
-
             }else{
                 try {
                     Blog origin = blogDao.selectById(blog.getId());

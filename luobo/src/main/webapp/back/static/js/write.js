@@ -20,6 +20,7 @@ window.onload = function (){
         height  : 300,
         watch : false,                // 关闭实时预览
         syncScrolling : "single",
+        htmlDecode : "style,script,iframe,img|on*",
         path    : "editor.md/lib/",
         markdown: $('#abstract-md')[0].innerHTML!=null?$('#abstract-md')[0].innerHTML:"",
         toolbarIcons : function() {
@@ -34,6 +35,7 @@ window.onload = function (){
         syncScrolling : "single",
         path    : "editor.md/lib/",
         imageUpload : true,
+        htmlDecode : "style,script,iframe,img|on*",
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL : "/api/upload",
         markdown: $('#content-md')[0].innerHTML!=null?$('#content-md')[0].innerHTML:"",
