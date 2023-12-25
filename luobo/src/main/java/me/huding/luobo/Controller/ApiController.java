@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import lombok.Data;
 import me.huding.luobo.config.ResConsts;
 import me.huding.luobo.dao.BlogDao;
+import me.huding.luobo.dao.LunboDao;
 import me.huding.luobo.entity.Blog;
 import me.huding.luobo.entity.BlogCategory;
+import me.huding.luobo.entity.Lunbo;
 import me.huding.luobo.utils.Result;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -19,11 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.UUID;
 
 @WebServlet("/api/*")
 public class ApiController extends HttpServlet {
     BlogDao blogDao = new BlogDao();
 
+    LunboDao lunboDao = new LunboDao();
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
     private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
     private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
@@ -61,6 +65,43 @@ public class ApiController extends HttpServlet {
             } catch (SQLException e) {
                 throw new ServletException("Database access error", e);
             }
+        }else if (pathInfo.equals("/updatelunbo")) {
+            String id  = request.getParameter("id");
+            Integer value  = Integer.valueOf(request.getParameter("value")) ;
+            try{
+                Blog blog = blogDao.selectById(id);
+                blog.setLunbo(value);
+                blogDao.updateLunbo(blog);
+                if(value == 1){
+                    UUID uuid = UUID.randomUUID();
+                    String uuidWithoutDashes = uuid.toString().replace("-", "");
+                    Lunbo lunbo = new Lunbo();
+                    lunbo.setId(uuidWithoutDashes);
+                    lunbo.setBlogId(blog.getId());
+                    lunbo.setLink(blog.getPath());
+                    lunbo.setCoverImg(blog.getCoverURL());
+                    lunboDao.insert(lunbo);
+                    result = new Result(ResConsts.Code.SUCCESS,"",null);
+                }else if(value == 0){
+                    int affectRow = lunboDao.deleteByBlogId(id);
+                    if(affectRow == 0){
+                        result = new Result(ResConsts.Code.FAILURE,"无法删除轮播",null);
+                    }else{
+                        result = new Result(ResConsts.Code.SUCCESS,"",null);
+                    }
+                }else{
+                    result = new Result(ResConsts.Code.FAILURE,"无法修改轮播",null);
+                }
+            }catch (Exception e){
+                System.out.println(e);
+                result = new Result(ResConsts.Code.FAILURE,"发送错误！无法修改轮播",null);
+            }
+            String json = new Gson().toJson(result);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+        }else{
+            response.setStatus(404);
         }
 
     }

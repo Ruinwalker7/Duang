@@ -46,9 +46,7 @@
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-<%--                <li class="layui-nav-item">--%>
-<%--                    <a class="main_left" data-src="/man">首页</a>--%>
-<%--                </li>--%>
+
                 <li class="layui-nav-item">
                     <a class="main_left" >文章</a>
                     <dl class="layui-nav-child">
@@ -62,7 +60,9 @@
 <%--                        <dd><a class="navItem" data-src="/back/write.jsp">草稿归纳</a></dd>--%>
                     </dl>
                 </li>
-
+<%--                <li class="layui-nav-item">--%>
+<%--                    <a class="main_left navItem" data-src="/back/lunbo.jsp">轮播图</a>--%>
+<%--                </li>--%>
 <%--                <li class="layui-nav-item">--%>
 <%--                    <a class="main_left">通用</a>--%>
 <%--                    <dl class="layui-nav-child">--%>

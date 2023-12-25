@@ -18,7 +18,7 @@
 </div>
 
 <script type="text/html" id="ID-table-demo-templet-switch">
-    <input type="checkbox" name="lunbo"  title="开启|关闭" lay-skin="switch" value="{{= d.id }}"
+    <input type="checkbox" name="src"  title="开启|关闭" lay-skin="switch" value="{{= d.id }}"
            lay-filter="demo-templet-status" {{= d.lunbo == 1 ? "checked": ""}}>
 </script>
 
@@ -34,7 +34,7 @@
     layui.use(['table', 'dropdown'], function(){
         var table = layui.table;
         var dropdown = layui.dropdown;
-        var form = layui.form;
+
         // 创建渲染实例
         table.render({
             elem: '#test',
@@ -73,27 +73,27 @@
                             fetch(url1, {
                                 method: 'GET',
                             })
-                            .then(response => {
-                                if (!response.ok) {
-                                    layer.msg('删除失败', {icon: 2});
-                                    throw new Error('Network response was not ok');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                if(data.code == 0){
-                                    layer.msg('删除成功', {icon: 1});
-                                    obj.del(); // 删除对应行（tr）的DOM结构
-                                }else{
-                                    layer.msg('您无法删除！', {icon: 2});
-                                }
+                                .then(response => {
+                                    if (!response.ok) {
+                                        layer.msg('删除失败', {icon: 2});
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    if(data.code == 0){
+                                        layer.msg('删除成功', {icon: 1});
+                                        obj.del(); // 删除对应行（tr）的DOM结构
+                                    }else{
+                                        layer.msg('您无法删除！', {icon: 2});
+                                    }
 
-                            })
-                            .catch(error => {
-                                layer.msg('您无法删除！', {icon: 2});
-                                // 请求失败时的处理
-                                console.error('There has been a problem with your fetch operation:', error);
-                            });
+                                })
+                                .catch(error => {
+                                    layer.msg('您无法删除！', {icon: 2});
+                                    // 请求失败时的处理
+                                    console.error('There has been a problem with your fetch operation:', error);
+                                });
                             layer.close(index);
                         });
                     }
@@ -130,31 +130,40 @@
             var value = this.checked ? 1:0
             var id = this.value;
             var name = this.name;
-            var url1 = '/api/updatelunbo'
+            var url1
+            console.log(name)
+            switch (name){
+                case 'src':
+                    url1 = '/api/man/update/src'
+                    break
+                case 'dst':
+                    url1 = '/api/man/update/dst'
+                    break
+                case 'delivery':
+                    url1 = '/api/man/update/delivery'
+                    break;
+            }
+
+            console.log(url1)
             url1 += '?id='+id+'&value='+value
+
             console.log(url1)
 
             fetch(url1, {
                 method: 'GET'
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if(data.code == 0){
-                    layer.msg('修改成功', {icon: 1});
-                }else{
-                    layer.msg('修改失败', {icon: 2});
-                }
-                console.log('Success:', data);
-            })
-            .catch(error => {
-                layer.msg('修改失败', {icon: 2});
-                console.error('Error:', error);
-            });
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response;
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
         });
     });
 </script>

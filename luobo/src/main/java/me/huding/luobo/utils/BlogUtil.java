@@ -20,7 +20,6 @@ public class BlogUtil {
             // 获取模板
             String realPath = servletContext.getRealPath("template/template.html");
             String template = new String(Files.readAllBytes(Paths.get(realPath)), "UTF-8");
-
             // 替换占位符
             template = template.replace("<!-- BLOG_COVER_IMAGE -->", blog.getCoverURL());
             template = template.replace("<!-- BLOG_CONTENT -->", blog.getHtml());
@@ -55,6 +54,33 @@ public class BlogUtil {
             String savePath = servletContext.getRealPath(filename);
             // 保存最终的HTML文件
             Files.write(Paths.get(savePath), finalHtml.getBytes("UTF-8"));
+            System.out.println("博客文章已保存为：" + filename);
+            return filename;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String updateBlogFile(ServletContext servletContext, Blog blog) {
+
+        try {
+            // 获取模板
+            String realPath = servletContext.getRealPath("template/template.html");
+            String template = new String(Files.readAllBytes(Paths.get(realPath)), "UTF-8");
+
+            // 替换占位符
+            template = template.replace("<!-- BLOG_COVER_IMAGE -->", blog.getCoverURL());
+            template = template.replace("<!-- BLOG_CONTENT -->", blog.getHtml());
+            template = template.replace("<!-- BLOG_TITLE -->", blog.getTitle());
+            template = template.replace("<!-- BLOG_TAG -->", blog.getTags().replace(","," "));
+            template = template.replace("<!-- BLOG_CREATE_TIME -->", blog.getPublishTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
+            String finalHtml = template.replace("<!-- BLOG_UPDATE_TIME -->",  blog.getLastUpdateTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
+
+            String relateDirPath =blog.getPath();
+            String filename = servletContext.getRealPath(relateDirPath);
+
+            Files.write(Paths.get(filename), finalHtml.getBytes("UTF-8"));
             System.out.println("博客文章已保存为：" + filename);
             return filename;
         } catch (IOException e) {

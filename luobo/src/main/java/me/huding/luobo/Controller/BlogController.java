@@ -6,9 +6,11 @@ import me.huding.luobo.config.ResConsts;
 import me.huding.luobo.dao.BlogCategoryDao;
 import me.huding.luobo.dao.BlogDao;
 import me.huding.luobo.dao.BlogTagsDao;
+import me.huding.luobo.dao.LunboDao;
 import me.huding.luobo.entity.Blog;
 import me.huding.luobo.entity.BlogCategory;
 import me.huding.luobo.entity.BlogTags;
+import me.huding.luobo.entity.Lunbo;
 import me.huding.luobo.utils.BlogUtil;
 import me.huding.luobo.utils.Result;
 
@@ -32,6 +34,7 @@ public class BlogController extends HttpServlet {
 
     private final BlogDao blogDao = new BlogDao();
 
+    private final LunboDao lunboDao = new LunboDao();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
         Result result;
@@ -41,7 +44,6 @@ public class BlogController extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
-            // 处理 /path/
         } else if (pathInfo.equals("/category")) {
             try {
                 List<BlogCategory> data = blogCategoryDao.selectAll();
@@ -66,7 +68,7 @@ public class BlogController extends HttpServlet {
             }
         }  else if (pathInfo.equals("/lunbo")) {
             try {
-                List<Blog> data = blogDao.findLunbo();
+                List<Lunbo> data = lunboDao.selectAll();
                 result = new Result(ResConsts.Code.OK,"",data);
                 String json = new Gson().toJson(result);
                 response.setContentType("application/json");
@@ -99,25 +101,43 @@ public class BlogController extends HttpServlet {
             }
             String jsonData = buffer.toString();
             Blog blog  = gson.fromJson(jsonData,Blog.class);
-            blog.setId(uuidWithoutDashes);
-            System.out.println(blog);
-
-            String url = BlogUtil.createBlogPost(getServletContext(),blog,blog.getId(),blog.getPublishTime());
-            if(url!=null){
-                blog.setPath(url);
-                int resultnum = 0;
-                try {
-                    resultnum = blogDao.insert(blog);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                if(resultnum==1){
-                    result = new Result(ResConsts.Code.SUCCESS,"",null);
+            if(blog.getId()==null){
+                blog.setId(uuidWithoutDashes);
+                System.out.println(blog);
+                String url = BlogUtil.createBlogPost(getServletContext(),blog,blog.getId(),blog.getPublishTime());
+                if(url!=null){
+                    blog.setPath(url);
+                    int resultnum = 0;
+                    try {
+                        resultnum = blogDao.insert(blog);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    if(resultnum==1){
+                        result = new Result(ResConsts.Code.SUCCESS,"",null);
+                    }else{
+                        result = new Result(ResConsts.Code.FAILURE,"无法创建博客",null);
+                    }
                 }else{
                     result = new Result(ResConsts.Code.FAILURE,"无法创建博客",null);
                 }
+
             }else{
-                result = new Result(ResConsts.Code.FAILURE,"无法创建博客",null);
+                try {
+                    Blog origin = blogDao.selectById(blog.getId());
+                    blog.setPath(origin.getPath());
+                    int rows=blogDao.updateById(blog);
+                    BlogUtil.updateBlogFile(getServletContext(),blog);
+                    if(rows!=0){
+                        result = new Result(ResConsts.Code.SUCCESS,"",null);
+
+                    }else{
+                        result = new Result(ResConsts.Code.FAILURE,"无法更新博客",null);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    result = new Result(ResConsts.Code.SUCCESS,"",null);
+                }
             }
 
             String json = new Gson().toJson(result);
@@ -125,7 +145,7 @@ public class BlogController extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
-        }else {
+        }  else {
             // 处理其他情况或返回错误
             result = new Result(ResConsts.Code.FAILURE,ResConsts.Msg.SERVER_ERROR,null);
             System.out.println("不可用资源");

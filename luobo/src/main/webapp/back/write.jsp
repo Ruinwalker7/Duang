@@ -3,7 +3,19 @@
 <%@ page import="me.huding.luobo.dao.BlogCategoryDao" %>
 <%@ page import="me.huding.luobo.entity.BlogCategory" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="me.huding.luobo.entity.Blog" %>
+<%@ page import="me.huding.luobo.dao.BlogDao" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
+
+<%  String id = request.getParameter("id");
+    Blog blog= null;
+
+    if(id!=null){
+        BlogDao blogDao = new BlogDao();
+        blog = blogDao.selectById(id);
+        System.out.println(blog);
+    }
+%>
 <!doctype html>
 <html>
 <head>
@@ -18,9 +30,11 @@
 </head>
 <body>
     <div class="form">
+        <input id="idInput" type="text" name="id" placeholder="标题" class="layui-input" hidden value="<%= blog!=null?blog.getId():""%>">
+
         <div>
             <div>
-                <label for="titleInput">标题：</label><input id="titleInput" type="text" name="" placeholder="标题" class="layui-input">
+                <label for="titleInput">标题：</label><input id="titleInput" type="text" name="" placeholder="标题" class="layui-input" value="<%= blog!=null?blog.getTitle():""%>">
             </div>
         </div>
 
@@ -30,16 +44,13 @@
             <div id="test-editormd">
             </div>
         </div>
-
-
     <div>
 <%--        <div class="tag__select">--%>
 <%--            <input id="tag" type="text" class="completed-input"><button onclick="$('#tagCheckboxPanel').toggle()">选择</button><div id="tagSelectedPanel" class="completed-panel" style="height:160px;"></div><div class="fn__none completed-ck" id="tagCheckboxPanel"><span class="">DICOM</span><span class="">GitHub</span><span class="">Honeyd</span><span class="">Python</span><span class="">Robomaster</span><span class="">c++</span><span class="">git</span><span class="">latex</span><span class="">linux</span><span class="">nohup</span><span class="">stash</span><span class="">ubuntu</span><span class="">中南大学</span><span class="">医学影响</span><span class="">博客</span><span class="">大恒相机驱动</span><span class="">开源</span><span class="">待分类</span><span class="">抢课</span><span class="">数据分析</span><span class="">数据可视化</span><span class="">旅行</span><span class="">日期</span><span class="">深圳中学</span><span class="">直播</span><span class="">脚本</span><span class="">行为树</span><span class="">随记</span><div class="clear"></div></div>--%>
 <%--        </div>--%>
-
         <div>
             <label>标签（使用英文输入状态下的逗号进行分隔）:
-                <input id="tags" type="text" name="tags" placeholder="标签" class="layui-input">
+                <input id="tags" type="text" name="tags" placeholder="标签" class="layui-input" value="<%=  blog!=null?blog.getTags():""%>" >
             </label>
         </div>
     </div>
@@ -53,8 +64,9 @@
             }
             request.setAttribute("categorys", list); // 将数据列表存储在request作用域中
         %>
+
     <div>
-        <label for="categorySelector">分类:</label><select id="categorySelector">
+        <label for="categorySelector">分类:</label><select id="categorySelector" value="<%= blog!=null?blog.getCategoryID():""%>">
             <option value="">无分类</option>
             <c:forEach items="${categorys}" var="category">
                 <option value="${category.id}">${category.name} (${category.blogNum})</option>
@@ -63,12 +75,11 @@
     </div>
 
     <div>
-        <label for="createDate">创建日期（可选，自动请留空）:  </label><input id="createDate" type="datetime-local">
+        <label for="createDate">创建日期（可选，自动请留空）:  </label><input id="createDate" type="datetime-local" value="<%= blog!=null?blog.getPublishTime():""%>">
     </div>
         <div id="layout2" >
             <label>摘要</label>
-            <div id="test-editormd2">
-            </div>
+            <div id="test-editormd2"></div>
         </div>
 
         <div class="fn__right">
@@ -79,5 +90,10 @@
             <button id="submitArticle">发布</button>
         </div>
     </div>
+
+    <div hidden id="content-md"><%= blog!=null?blog.getContent():"" %></div>
+
+
+    <div hidden id="abstract-md"><%= blog!=null?blog.getBlogAbstractText():"" %></div>
 </body>
 </html>

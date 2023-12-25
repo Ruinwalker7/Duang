@@ -10,6 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlogDao {
+    public int updateById(Blog blog) throws SQLException{
+        int result=0;
+        String sql = "UPDATE blog SET title=?,blogAbstract=?,blogAbstractText=?,content=?,categoryID=?,publishTime=?,lastUpdateTime=?,coverURL=?,html=?,tags=? WHERE id = ?";
+        try (Connection conn = DruidUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1,blog.getTitle());
+            pstmt.setString(2,blog.getBlogAbstract());
+            pstmt.setString(3,blog.getBlogAbstractText());
+            pstmt.setString(4,blog.getContent());
+            pstmt.setString(5,blog.getCategoryID());
+            pstmt.setTimestamp(6,blog.getPublishTime());
+            pstmt.setTimestamp(7,blog.getLastUpdateTime());
+            pstmt.setString(8,blog.getCoverURL());
+            pstmt.setString(9,blog.getHtml());
+            pstmt.setString(10,blog.getTags());
+            pstmt.setString(11,blog.getId());
+            result = pstmt.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     public int deleteById(String id) throws  SQLException{
         int result=0;
         String sql = "DELETE FROM blog WHERE id = ?";
@@ -24,7 +46,7 @@ public class BlogDao {
     }
     public int insert(Blog blog) throws SQLException {
         int result=0;
-        String sql = "INSERT INTO blog VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO blog VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = DruidUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)){
             pstmt.setString(1,blog.getId());
@@ -44,6 +66,7 @@ public class BlogDao {
             pstmt.setInt(15,blog.getStatus());
             pstmt.setString(16,blog.getHtml());
             pstmt.setString(17,blog.getTags());
+            pstmt.setInt(18,0);
             result = pstmt.executeUpdate();
         }catch (SQLException e) {
             e.printStackTrace();
@@ -98,7 +121,7 @@ public class BlogDao {
         List<Blog> result = new ArrayList<>();
         try (Connection conn = DruidUtil.getConnection();
 
-             PreparedStatement pstmt = conn.prepareStatement("SELECT b.id,b.title,b.blogAbstract,b.publishTime,b.coverURL,b.tags,b.readNum,b.commentNum,b.path,c.name from blog as b, category as c  WHERE c.id = b.categoryID order by publishTime"
+             PreparedStatement pstmt = conn.prepareStatement("SELECT b.id,b.title,b.blogAbstract,b.publishTime,b.coverURL,b.tags,b.readNum,b.commentNum,b.path,b.lunbo,c.name from blog as b  LEFT JOIN category as c  on c.id = b.categoryID order by publishTime desc "
              );
              ResultSet rs = pstmt.executeQuery()) {
 
@@ -114,6 +137,7 @@ public class BlogDao {
                 data.setCommentNum(rs.getInt("b.commentNum"));
                 data.setPath(rs.getString("b.path"));
                 data.setCategoryID(rs.getString("c.name"));
+                data.setLunbo(rs.getInt("b.lunbo"));
                 result.add(data);
             }
         }
@@ -137,4 +161,46 @@ public class BlogDao {
         return result;
     }
 
+    public Blog selectById(String id) throws SQLException{
+        Blog blog = new Blog();
+        String sql = "SELECT * from blog as b  where id = ?";
+        try (Connection conn = DruidUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)
+            ) {
+            pstmt.setString(1,id);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Blog data = new Blog();
+                data.setId(rs.getString("id"));
+                data.setContent(rs.getString("content"));
+                data.setTitle(rs.getString("title"));
+                data.setBlogAbstract(rs.getString("blogAbstract"));
+                data.setBlogAbstractText(rs.getString("blogAbstractText"));
+                data.setPublishTime(rs.getTimestamp("publishTime"));
+                data.setCoverURL(rs.getString("coverURL"));
+                data.setTags(rs.getString("tags"));
+                data.setReadNum(rs.getInt("readNum"));
+                data.setCommentNum(rs.getInt("commentNum"));
+                data.setPath(rs.getString("path"));
+                data.setLunbo(rs.getInt("lunbo"));
+                data.setCategoryID(rs.getString("categoryID"));
+                blog = data;
+            }
+        }
+        return blog;
+    }
+
+    public int updateLunbo(Blog blog) throws SQLException{
+        int result=0;
+        String sql = "UPDATE blog SET lunbo = ? where id = ?";
+        try (Connection conn = DruidUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setInt(1,blog.getLunbo());
+            pstmt.setString(2,blog.getId());
+            result = pstmt.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

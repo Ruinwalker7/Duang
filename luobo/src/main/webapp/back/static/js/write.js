@@ -15,23 +15,19 @@ function resizeIframe(iframe) {
 var testEditor,testEditor2;
 
 window.onload = function (){
-
     testEditor2 = editormd("test-editormd2", {
-
         width   : "100%",
         height  : 300,
         watch : false,                // 关闭实时预览
         syncScrolling : "single",
         path    : "editor.md/lib/",
+        markdown: $('#abstract-md')[0].innerHTML!=null?$('#abstract-md')[0].innerHTML:"",
         toolbarIcons : function() {
-            // Or return editormd.toolbarModes[name]; // full, simple, mini
-            // Using "||" set icons align right.
             return ["undo", "redo", "|", "bold", "del", "quote","|", "h1","h2","h3","h4","h5","h6","|", "list-ul","list-ol","hr","|","reference-link", "link","image","code","preformatted-text","pagebreak","html-entities","table","emoji","|","goto-line", "preview", "watch", "|", "fullscreen","search","clear"]
         },
     });
 
     testEditor = editormd("test-editormd", {
-
         width   : "100%",
         height  : 640,
         watch : true,                // 关闭实时预览
@@ -40,22 +36,15 @@ window.onload = function (){
         imageUpload : true,
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL : "/api/upload",
+        markdown: $('#content-md')[0].innerHTML!=null?$('#content-md')[0].innerHTML:"",
         toolbarIcons : function() {
-            // Or return editormd.toolbarModes[name]; // full, simple, mini
-            // Using "||" set icons align right.
             return ["undo", "redo", "|", "bold", "del", "quote","|", "h1","h2","h3","h4","h5","h6","|", "list-ul","list-ol","hr","|","reference-link", "link","image","code","preformatted-text","pagebreak","html-entities","table","emoji","|","goto-line", "preview", "watch", "|", "fullscreen","search","clear"]
         },
         onload : function() {
             testEditor2.unwatch()
             testEditor.watch()
-            // testEditor.unwatch()
-            // alert("onload");
-            // this.setMarkdown("### onloaded");
-            // console.log("onload =>", this, this.id, this.settings);
         }
     });
-
-
 }
 function getCurrentDateTime() {
     var now = new Date();
@@ -112,6 +101,7 @@ $(document).ready(function() {
         }
         // 使用jQuery简化数据收集
         var data = {
+            id:$('#idInput').val(),
             title: $('#titleInput').val(),
             content: testEditor.getMarkdown(),
             blogAbstract: testEditor2.getPreviewedHTML(),
@@ -135,6 +125,10 @@ $(document).ready(function() {
             contentType: 'application/json; charset=UTF-8',
             data: jsonData,
             success: function(response) {
+                if(response.code==0){
+                    window.location.href = "/back/blogtable.jsp"
+                }
+
                 console.log('Success:', response);
             },
             error: function(xhr, status, error) {

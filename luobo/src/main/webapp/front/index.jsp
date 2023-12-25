@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="程序员技术分享博客" />
     <meta name="msapplication-TileColor" content="#0e90d2">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <link href="${pageContext.request.contextPath}/layui/css/layui.css" rel="stylesheet">
     <link rel="stylesheet" href="https://ftp.stackoverflow.wiki/bolo/fontawesome-free-5.14.0-web/css/all.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/front/static/css/main.css">

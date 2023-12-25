@@ -103,7 +103,7 @@ doAjax( api.NOTICE_SHOW_URL ,{},function (res){
 //轮播
 doAjax(api.BLOG_LUNBO_URL,{},function (res){
     res.data.forEach(function(element) {
-        var newDiv = $('<div><a href="'+element.path+'"><img width="100%" src="'+ element.coverURL+'"></a></div>')
+        var newDiv = $('<div><a href="'+element.link+'"><img href="" width="100%" src="'+ element.coverImg+'"></a></div>')
         $('#carousel').append(newDiv)
     });
 
