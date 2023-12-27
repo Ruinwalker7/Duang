@@ -133,7 +133,7 @@ $(function() {
 	var captchaImage = document.getElementById('verity-code');
 	// 为图片添加点击事件监听器
 	captchaImage.addEventListener('click', function() {
-		var timestamp = new Date().getTime();
+		const timestamp = new Date().getTime();
 		captchaImage.src = '/captcha?' + timestamp;
 	});
 });

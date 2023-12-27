@@ -13,7 +13,7 @@
     <meta name="description" content="定位为IT技术博客站，博客内容主要涉及编程语言、推荐算法、数据挖掘等方面，分享实用的学习和开发资料">
     <meta name="keywords" content="辰的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>橙子博客</title>
+    <title>辰的个人博客</title>
     <meta name="renderer" content="webkit">
     <link rel="shortcut icon" type="image/png" href="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/17/17/542503d8-5e00-4fd8-899a-08d8b6752b85.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -37,8 +37,6 @@
                 <a class="blog_title" id="site-name" href="${pageContext.request.contextPath}/index" style="font-size: 18px">辰的个人博客 👋🏼</a>
             </span>
 
-<%--                    <a href="/index">--%>
-<%--                        博客</a>--%>
 
                 </div>
                 <!-- 头部区域（可配合layui 已有的水平导航） -->

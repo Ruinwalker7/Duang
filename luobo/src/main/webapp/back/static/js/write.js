@@ -18,14 +18,18 @@ window.onload = function (){
     testEditor2 = editormd("test-editormd2", {
         width   : "100%",
         height  : 300,
-        watch : false,                // 关闭实时预览
+        watch : true,                // 关闭实时预览
         syncScrolling : "single",
         htmlDecode : "style,script,iframe,img|on*",
         path    : "editor.md/lib/",
+        tex : true,
         markdown: $('#abstract-md')[0].innerHTML!=null?$('#abstract-md')[0].innerHTML:"",
         toolbarIcons : function() {
             return ["undo", "redo", "|", "bold", "del", "quote","|", "h1","h2","h3","h4","h5","h6","|", "list-ul","list-ol","hr","|","reference-link", "link","image","code","preformatted-text","pagebreak","html-entities","table","emoji","|","goto-line", "preview", "watch", "|", "fullscreen","search","clear"]
         },
+        onload:function (){
+            testEditor2.unwatch()
+        }
     });
 
     testEditor = editormd("test-editormd", {
@@ -35,6 +39,7 @@ window.onload = function (){
         syncScrolling : "single",
         path    : "editor.md/lib/",
         imageUpload : true,
+        tex : true,
         htmlDecode : "style,script,iframe,img|on*",
         imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL : "/api/upload",
@@ -43,7 +48,6 @@ window.onload = function (){
             return ["undo", "redo", "|", "bold", "del", "quote","|", "h1","h2","h3","h4","h5","h6","|", "list-ul","list-ol","hr","|","reference-link", "link","image","code","preformatted-text","pagebreak","html-entities","table","emoji","|","goto-line", "preview", "watch", "|", "fullscreen","search","clear"]
         },
         onload : function() {
-            testEditor2.unwatch()
             testEditor.watch()
         }
     });

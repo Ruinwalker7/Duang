@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/back/static/css/write.css" />
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="${pageContext.request.contextPath}/back/editor.md/editormd.min.js"></script>
-    <script src="${pageContext.request.contextPath}/back/static/js/write.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js" integrity="sha512-SYfDUYPg5xspsG6OOpXU366G8SZsdHOhqk/icdrYJ2E/WKZxPxze7d2HD3AyXpT7U22PZ5y74xRpqZ6A2bJ+kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>创建博客</title>
     <script src="//cdn.staticfile.org/layui/2.9.2/layui.js"></script>

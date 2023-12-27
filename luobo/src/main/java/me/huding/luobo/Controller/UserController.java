@@ -19,7 +19,6 @@ import java.util.Scanner;
 @WebServlet("/user/login")
 public class UserController extends HttpServlet {
     private final UserDao userDao = new UserDao();
-
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
@@ -87,6 +86,5 @@ public class UserController extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(retJson);
         }
-
     }
 }
