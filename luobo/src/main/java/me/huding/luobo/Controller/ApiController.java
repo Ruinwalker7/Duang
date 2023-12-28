@@ -29,8 +29,8 @@ public class ApiController extends HttpServlet {
 
     LunboDao lunboDao = new LunboDao();
     private static final int MEMORY_THRESHOLD   = 1024 * 1024 * 3;  // 3MB
-    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 40; // 40MB
-    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 50; // 50MB
+    private static final int MAX_FILE_SIZE      = 1024 * 1024 * 10; // 40MB
+    private static final int MAX_REQUEST_SIZE   = 1024 * 1024 * 20; // 50MB
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String pathInfo = request.getPathInfo();

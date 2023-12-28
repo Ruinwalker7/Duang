@@ -14,13 +14,12 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-title" content="程序员技术分享博客" />
 	<meta name="msapplication-TileColor" content="#0e90d2">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
 	<link href="/layui/css/layui.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://ftp.stackoverflow.wiki/bolo/fontawesome-free-5.14.0-web/css/all.css">
 	<link rel="stylesheet" href="/front/static/css/main.css">
 	<link rel="stylesheet" href="/front/static/css/base.css">
 	<script src="/layui/layui.js"></script>
-<!--	<script src="/front/static/js/index.js"></script>-->
 </head>
 
 
@@ -45,16 +44,6 @@
 		</ul>
 
 		<ul class="layui-nav layui-layout-right">
-<!--			<li class="layui-nav-item layui-hide layui-show-sm-inline-block ">-->
-<!--				<div class="layui-input-wrap">-->
-<!--					<label>-->
-<!--						<input type="text" placeholder="搜索" class="layui-input">-->
-<!--					</label>-->
-<!--					<div class="layui-input-suffix">-->
-<!--						<i class="layui-icon layui-icon-search"></i>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</li>-->
 
 			<li class="layui-nav-item layui-hide layui-show-sm-inline-block ">
 				<a>
@@ -81,21 +70,19 @@
 			<div class="ft__center">
 				<div class="article__meta">
 					<time>
-						2023-12-25  / 2023-12-25
+						2023-12-25 / 2023-12-28
 					</time>
 					/ 旅行
-<!--					<a rel="tag" href=""></a> &nbsp;		标签-->
-<!--					<a rel="tag" href=""></a> &nbsp;-->
 				</div>
 				<h2 class="article__title">
 					[旅行]澳门旅游
 				</h2>
 			</div>
 
-
 			<div class="wrapper">
 			<section id="article-container">
-			<p><img alt="Snipaste_2023-02-10_22-28-02.jpg" src="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/22/28/45a8b58f-3359-4af7-b222-cd001a18296b.jpg" style="zoom: 70%;"><br>简单记录一下下澳门旅游的攻略：
+<p><img alt="Snipaste_2023-02-10_22-28-02.jpg" src="http://120.133.136.23:8888/uploadImages/113/110/166/3/2023/02/10/22/28/45a8b58f-3359-4af7-b222-cd001a18296b.jpg" style="zoom: 70%;"><br>简单记录一下下澳门旅游的攻略 测试能不能增加一些东西！：
+</p><p><img src="http://localhost:8080/uploads/image_1703682726876.jpeg" alt="">
 </p><p><img src="http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/02/10/21/51/c01a36db-c058-41e3-9491-cec533c73323.png" style="zoom: 60%;">
 </p><p>一些攻略准备（密密麻麻的收藏）</p>
 <h2 id="h2--and-"><a name="景点and打卡点" class="reference-link"></a><span class="header-link octicon octicon-link"></span>景点and打卡点</h2><h3 id="h3-u6FB3u95E8u534Au5C9B"><a name="澳门半岛" class="reference-link"></a><span class="header-link octicon octicon-link"></span>澳门半岛</h3><p>我们的本岛旅游路线：<br><img src="http://120.133.136.23:8888//uploadImages/120/133/136/23/2023/02/10/21/56/d46fa521-b16c-471d-8c14-038a209e049a.png" style="zoom: 50%;"><br>基本覆盖了本岛的80%景点。
@@ -129,14 +116,151 @@
 <p>3.去之前可以支付宝搜索漫游流量，我买的大概是27元3g3天的4g本地流量，速度可以。</p>
 <p>4.点外卖下载澳门的软件mfood。</p>
 <p>5.赌场要满21周岁，不过像新葡京那种查的不严格的可以混进去（亲测有概率能混）</p>
-
 			</section>
 			</div>
 		</div>
+
+		<div class="article__bottom">
+			<div class="wrapper">
+				<div class="fn__flex">
+					<div class="item" id="randomArticles"></div>
+				</div>
+
+				<section class="comments">
+					<ul class="commentwrap">
+						<div class="commentFont" id="commentIcon" style="margin: 0 auto; text-align: center; padding-bottom: 20px">
+							<img src="https://ftp.stackoverflow.wiki/bolo/background/butterfly/comment.png">
+							<span style="font-size: 30px; vertical-align: middle;">评论</span>
+						</div>
+
+						<div class="wrapper view-article">
+							<div class="Valine v" data-class="v">
+								<div class="vpanel">
+									<div class="vwrap">
+										<div class="vheader item3">
+											<input placeholder="你的昵称" id="boloUser" class="vnick vinput" type="text">
+										</div>
+										<div class="vedit">
+											<textarea placeholder="发表评论 ..." class="veditor vinput" id="comment" rows="5" tabindex="4" ></textarea>
+										</div>
+										<div><button onclick="sendComment()" id="soloEditorAdd" style="border-radius: 4px; background-color: #60b044; border: 1px solid #569e3d; color: #fff;padding: 0 12px;">发送</button></div>
+									</div>
+
+								</div>
+								<div class="vcount" style="display: block; padding: 25px 0px 20px 0px;"><span class="vnum">0</span> 评论</div>
+								<div class="vcards" id="comments">
+								</div>
+							</div>
+						</div>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+
 	</article>
 </main>
 
+<script>
+	var cardsDiv = document.getElementById("comments")
+	function sendPageUrl() {
+		fetch('/blog/visit', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ url: window.location.href })
+		})
+				.then(response => response.json())
+				.then(data => console.log('Success:', data))
+				.catch((error) => console.error('Error:', error));
+	}
+	function addCard(name,content,cdate){
+		var card = document.createElement("div");
+		card.className = "card"; // 可以添加一个类名用于样式设置
+		// 将提取的信息添加到card中
+		card.innerHTML = '<div className="vh">'+
+				'<div className="vhead">'+
+				'<a className="vnick" rel="nofollow" style="font-size: 1.05rem"'+
+				'>'+name+'</a>'+
+				'</div>'+
+				'<div className="vmeta">'+
+				'<span className="vtime">'+cdate+'</span>'+
+				'</div>'+
+				'<div className="vcontent">'+
+				'<p>'+content+'</p>'+
+				'</div>'+
+				'</div>';
 
+		if (cardsDiv.firstChild) {
+			// 如果已有子元素，将新元素添加为第一个子元素
+			cardsDiv.insertBefore(card, cardsDiv.firstChild);
+		} else {
+			// 如果没有子元素，直接使用appendChild
+			cardsDiv.appendChild(card);
+		}
+	}
+	function getComment(){
+		fetch('/comment/get', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ url: window.location.href })
+		}).then(response => response.json())
+				.then(function (data){
+					commentNums = data.data.length;
+					document.getElementsByClassName("vnum")[0].innerHTML = commentNums
+					data.data.forEach(function (item){
+						let name = item.nickname;
+						let content = item.content;
+						let cdate = item.cdate;
+						addCard(name,content,cdate)
+					})
+				}
+			).catch((error) => console.error('Error:', error));
+	}
+	function sendComment(){
+		fetch('/comment/send', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({url: window.location.href,
+				nickname: $('#boloUser').val(),
+				comment: $('#comment').val()})
+		}).then(response => response.json())
+				.then(function (){
+					addCard($('#boloUser').val(),$('#comment').val(),getCurrentFormattedDate())
+					$('#boloUser').val("");
+					$('#comment').val("");
+				} )
+				.catch((error) => console.error('Error:', error));
+
+	}
+	function getCurrentFormattedDate() {
+		var now = new Date();
+
+		var year = now.getFullYear();
+		var month = now.getMonth() + 1; // 月份是从0开始的
+		var day = now.getDate();
+		var hour = now.getHours();
+		var minute = now.getMinutes();
+		var second = now.getSeconds();
+
+		// 如果月份、日、小时、分钟或秒数小于10，则在前面加上'0'
+		month = month < 10 ? '0' + month : month;
+		day = day < 10 ? '0' + day : day;
+		hour = hour < 10 ? '0' + hour : hour;
+		minute = minute < 10 ? '0' + minute : minute;
+		second = second < 10 ? '0' + second : second;
+
+		return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+	}
+
+	sendPageUrl();
+	getComment();
+</script>
 
 </body>
 

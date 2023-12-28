@@ -10,6 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlogDao {
+    public int updateVisitById(String id) throws  SQLException{
+        int result=0;
+        String sql = "UPDATE blog SET readNum = readNum+1 WHERE id = ?";
+        try (Connection conn = DruidUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)){
+            pstmt.setString(1,id);
+            result = pstmt.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     public int updateById(Blog blog) throws SQLException{
         int result=0;
         String sql = "UPDATE blog SET title=?,blogAbstract=?,blogAbstractText=?,content=?,categoryID=?,publishTime=?,lastUpdateTime=?,coverURL=?,html=?,tags=? WHERE id = ?";
