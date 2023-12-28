@@ -72,9 +72,9 @@
 <%--                    </dl>--%>
 <%--                </li>--%>
 
-<%--                <li class="layui-nav-item">--%>
-<%--                    <a class="main_left"  data-src="/customer">关于</a>--%>
-<%--                </li>--%>
+                                <li class="layui-nav-item">
+                                    <a class="navItem"  data-src="/back/comment.jsp">评论</a>
+                                </li>
 
 <%--                <li class="layui-nav-item">--%>
 <%--                    <a class="main_left"  data-src="/customer">帮助</a>--%>

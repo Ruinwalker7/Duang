@@ -21,5 +21,7 @@ public class Comment {
 
     private String blogId;
 
-    private String status;
+    private int status;
+
+    private String blogName;
 }

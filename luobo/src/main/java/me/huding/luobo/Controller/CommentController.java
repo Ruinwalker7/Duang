@@ -6,7 +6,9 @@ import com.google.gson.JsonObject;
 import me.huding.luobo.config.ResConsts;
 import me.huding.luobo.config.TimestampSerializer;
 import me.huding.luobo.dao.CommentDao;
+import me.huding.luobo.entity.Blog;
 import me.huding.luobo.entity.Comment;
+import me.huding.luobo.entity.Lunbo;
 import me.huding.luobo.entity.Notice;
 import me.huding.luobo.utils.Result;
 
@@ -95,8 +97,58 @@ public class CommentController extends HttpServlet {
             }catch (Exception e){
                 e.printStackTrace();
             }
+        }else if(pathInfo.equals("/all")){
+            try {
+                List<Comment> comments = commentDao.findAll();
+                result = new Result(ResConsts.Code.SUCCESS, "", comments);
+                json = gson.toJson(result);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }else if(pathInfo.equals("/updatestatue")){
+            String id  = request.getParameter("id");
+            Integer value  = Integer.valueOf(request.getParameter("value")) ;
+            try{
+                Comment comment = commentDao.selectById(id);
+                comment.setStatus(value);
+                int affectRow =  commentDao.updateStatueById(comment);
+                if(affectRow == 0){
+                    result = new Result(ResConsts.Code.FAILURE,"无法修改",null);
+                }else{
+                    result = new Result(ResConsts.Code.SUCCESS,"",null);
+                }
+            }catch (Exception e){
+                System.out.println(e);
+                result = new Result(ResConsts.Code.FAILURE,"发生错误！无法修改",null);
+            }
+            json = new Gson().toJson(result);
         }
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo = request.getPathInfo();
+        Result result;
+        String json = null;
+        if(pathInfo.equals("/all")){
+            List<Comment> comments = commentDao.findAllWithName();
+            result = new Result(ResConsts.Code.SUCCESS, "", comments);
+            json = gson.toJson(result);
+        } else if (pathInfo.equals("/delete")) {
+            String id = request.getParameter("id");
+            int i = commentDao.deleteById(id);
+            if(i!=0)
+                result = new Result(ResConsts.Code.OK,"","");
+            else
+                result = new Result(ResConsts.Code.FAILURE,"","");
+            json = new Gson().toJson(result);
+        }else{
+            response.setStatus(404);
+            return;
+        }
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);

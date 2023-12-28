@@ -165,7 +165,7 @@
 				'>'+name+'</a>'+
 				'</div>'+
 				'<div className="vmeta">'+
-				'<span className="vtime">'+cdate+'</span>'+
+				'<span className="vtime" style="font-size: 0.90em">'+cdate+'</span>'+
 				'</div>'+
 				'<div className="vcontent">'+
 				'<p>'+content+'</p>'+
@@ -204,7 +204,7 @@
 		fetch('/comment/send', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'application/json;charset=utf-8',
 			},
 			body: JSON.stringify({url: window.location.href,
 				nickname: $('#boloUser').val(),
@@ -214,6 +214,8 @@
 					addCard($('#boloUser').val(),$('#comment').val(),getCurrentFormattedDate())
 					$('#boloUser').val("");
 					$('#comment').val("");
+					commentNums+=1
+					document.getElementsByClassName("vnum")[0].innerHTML = commentNums
 				} )
 				.catch((error) => console.error('Error:', error));
 

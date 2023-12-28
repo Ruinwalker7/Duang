@@ -245,7 +245,7 @@ public class BlogUtil {
                 "\t\t\t\t'>'+name+'</a>'+\n" +
                 "\t\t\t\t'</div>'+\n" +
                 "\t\t\t\t'<div className=\"vmeta\">'+\n" +
-                "\t\t\t\t'<span className=\"vtime\">'+cdate+'</span>'+\n" +
+                "\t\t\t\t'<span className=\"vtime\" style=\"font-size: 0.90em\">'+cdate+'</span>'+\n" +
                 "\t\t\t\t'</div>'+\n" +
                 "\t\t\t\t'<div className=\"vcontent\">'+\n" +
                 "\t\t\t\t'<p>'+content+'</p>'+\n" +
@@ -284,7 +284,7 @@ public class BlogUtil {
                 "\t\tfetch('/comment/send', {\n" +
                 "\t\t\tmethod: 'POST',\n" +
                 "\t\t\theaders: {\n" +
-                "\t\t\t\t'Content-Type': 'application/json',\n" +
+                "\t\t\t\t'Content-Type': 'application/json;charset=utf-8',\n" +
                 "\t\t\t},\n" +
                 "\t\t\tbody: JSON.stringify({url: window.location.href,\n" +
                 "\t\t\t\tnickname: $('#boloUser').val(),\n" +
@@ -294,7 +294,8 @@ public class BlogUtil {
                 "\t\t\t\t\taddCard($('#boloUser').val(),$('#comment').val(),getCurrentFormattedDate())\n" +
                 "\t\t\t\t\t$('#boloUser').val(\"\");\n" +
                 "\t\t\t\t\t$('#comment').val(\"\");\n" +
-                "\t\t\t\t} )\n" +
+                "\t\t\t\t\tcommentNums+=1\n" +
+                 "\t\t\t\tdocument.getElementsByClassName(\"vnum\")[0].innerHTML = commentNums} )\n" +
                 "\t\t\t\t.catch((error) => console.error('Error:', error));\n" +
                 "\n" +
                 "\t}\n" +
