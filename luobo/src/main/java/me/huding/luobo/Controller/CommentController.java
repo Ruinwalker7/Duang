@@ -85,7 +85,6 @@ public class CommentController extends HttpServlet {
                 String jsonData = buffer.toString();
                 JsonObject jsonObject = new Gson().fromJson(jsonData, JsonObject.class);
                 String urlStr = jsonObject.get("url").getAsString();
-
                 // 创建 URL 对象并获取文件名
                 String path = new URL(urlStr).getPath();
                 String fileName = path.substring(path.lastIndexOf('/') + 1);

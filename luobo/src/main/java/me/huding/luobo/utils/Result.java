@@ -12,9 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Result implements Serializable {
     private int code;
-
     private String message;
-
     private Object data;
 }
 

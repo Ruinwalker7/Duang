@@ -128,11 +128,8 @@
         form.on('switch(demo-templet-status)', function(obj){
             var value = this.checked ? 1:0
             var id = this.value;
-            var name = this.name;
             var url1 = '/api/updatelunbo'
             url1 += '?id='+id+'&value='+value
-            console.log(url1)
-
             fetch(url1, {
                 method: 'GET'
             })

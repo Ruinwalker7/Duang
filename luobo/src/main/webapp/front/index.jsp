@@ -2,6 +2,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="me.huding.luobo.dao.BlogDao" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="me.huding.luobo.dao.LunboDao" %>
+<%@ page import="me.huding.luobo.entity.Lunbo" %>
+<%@ page import="java.io.IOException" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE  html>
@@ -108,14 +111,39 @@
 
                 <div class="layui-carousel" id="ID-carousel-demo-image" style="margin-bottom: 20px">
                     <div carousel-item id="carousel">
+                        <%
+                            LunboDao lunboDao = new LunboDao();
+                            lunboDao.selectAll();
+                            try {
+                                List<Lunbo> data = lunboDao.selectAll();
+                                request.setAttribute("LunboList",data);
+                            } catch (SQLException e) {
+                                throw new ServletException("Database access error", e);
+                            }
+                        %>
+                        <c:forEach items="${LunboList}" var="lunbo">
+                            <div><a href="${lunbo.link}"><img width="100%" src="${lunbo.coverImg}"></a></div>
+
+                        </c:forEach>
                     </div>
                 </div>
-<%--                <div class="layui-card">--%>
-<%--                    <div class="layui-card-header">热门排行</div>--%>
-<%--                    <div class="layui-card-body">--%>
-<%--                        结合 layui 的栅格系统<br> 轻松实现响应式布局--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+
+                <div class="slider">
+
+
+                    <div class="slides">
+                        <c:forEach items="${LunboList}" var="lunbo">
+                            <div class="slide"><a href=" ${lunbo.link}"><img width="100%" src="${lunbo.coverImg}"></a></div>
+                        </c:forEach>
+                    </div>
+                    <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+                    <a class="next" onclick="moveSlide(1)">&#10095;</a>
+                    <div class="slider-indicators">
+                        <c:forEach var="c" begin="1" end="${LunboList.size()}">
+                            <span class="indicator" onclick="movetoSlide(${c})"></span>
+                        </c:forEach>
+                    </div>
+                </div>
 
     <%
         BlogDao blogDao = new BlogDao();
@@ -236,4 +264,4 @@
 
     </body>
 
-    </html>
+</html>

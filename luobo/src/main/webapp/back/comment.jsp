@@ -64,27 +64,26 @@
               fetch(url1, {
                 method: 'GET',
               })
-                      .then(response => {
-                        if (!response.ok) {
-                          layer.msg('删除失败', {icon: 2});
-                          throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                      })
-                      .then(data => {
-                        if(data.code == 0){
-                          layer.msg('删除成功', {icon: 1});
-                          obj.del(); // 删除对应行（tr）的DOM结构
-                        }else{
-                          layer.msg('您无法删除！', {icon: 2});
-                        }
-
-                      })
-                      .catch(error => {
-                        layer.msg('您无法删除！', {icon: 2});
-                        // 请求失败时的处理
-                        console.error('There has been a problem with your fetch operation:', error);
-                      });
+              .then(response => {
+                if (!response.ok) {
+                  layer.msg('删除失败', {icon: 2});
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                if(data.code == 0){
+                  layer.msg('删除成功', {icon: 1});
+                  obj.del(); // 删除对应行（tr）的DOM结构
+                }else{
+                  layer.msg('您无法删除！', {icon: 2});
+                }
+              })
+              .catch(error => {
+                layer.msg('您无法删除！', {icon: 2});
+                // 请求失败时的处理
+                console.error('There has been a problem with your fetch operation:', error);
+              });
               layer.close(index);
             });
           }
@@ -123,29 +122,27 @@
       var name = this.name;
       var url1 = '/comment/updatestatue'
       url1 += '?id='+id+'&value='+value
-      console.log(url1)
-
       fetch(url1, {
         method: 'post'
       })
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Network response was not ok');
-                }
-                return response.json();
-              })
-              .then(data => {
-                if(data.code == 0){
-                  layer.msg('修改成功', {icon: 1});
-                }else{
-                  layer.msg('修改失败', {icon: 2});
-                }
-                console.log('Success:', data);
-              })
-              .catch(error => {
-                layer.msg('修改失败', {icon: 2});
-                console.error('Error:', error);
-              });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if(data.code == 0){
+          layer.msg('修改成功', {icon: 1});
+        }else{
+          layer.msg('修改失败', {icon: 2});
+        }
+        console.log('Success:', data);
+      })
+      .catch(error => {
+        layer.msg('修改失败', {icon: 2});
+        console.error('Error:', error);
+      });
     });
   });
 </script>

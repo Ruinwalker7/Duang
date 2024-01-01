@@ -17,10 +17,8 @@ public class BlogCategoryDao {
         try (Connection conn = DruidUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM category");
              ResultSet rs = pstmt.executeQuery()) {
-
             while (rs.next()) {
                 BlogCategory data = new BlogCategory(rs.getString(1), rs.getString(2), rs.getTimestamp(3),rs.getInt(4),rs.getString(5),rs.getInt(6));
-                // 设置data的属性
                 result.add(data);
             }
         }

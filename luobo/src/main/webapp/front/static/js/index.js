@@ -70,7 +70,57 @@ doAjax( api.NOTICE_SHOW_URL ,{},function (res){
 
 
 
-$(window).resize(function() {
-    // 在窗口大小改变时执行的代码
-    console.log("窗口大小改变了！");
-});
+// $(window).resize(function() {
+//     console.log("窗口大小改变了！");
+// });
+let index = 0; // 当前显示的图片索引
+// function moveSlide(step) {
+//     const slides = document.querySelectorAll('.slide');
+//     const totalSlides = slides.length;
+//
+//     // 更新当前图片的索引
+//     index = (index + step + totalSlides) % totalSlides;
+//
+//     // 计算并设置新位置
+//     const newTransformValue = 'translateX(' + (-index * 100) + '%)';
+//     document.querySelector('.slides').style.transform = newTransformValue;
+// }
+
+function moveSlide(step) {
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const totalSlides = slides.length;
+
+    // 更新当前图片的索引
+    index = (index + step + totalSlides) % totalSlides;
+
+    // 更新幻灯片
+    const newTransformValue = 'translateX(' + (-index * 100) + '%)';
+    document.querySelector('.slides').style.transform = newTransformValue;
+
+    // 更新指示器
+    indicators.forEach(ind => ind.classList.remove('active'));
+    indicators[index].classList.add('active');
+}
+
+function movetoSlide(step) {
+    const slides = document.querySelectorAll('.slide');
+    const indicators = document.querySelectorAll('.indicator');
+    const totalSlides = slides.length;
+
+    // 更新当前图片的索引
+    index = (step + totalSlides) % totalSlides;
+
+    // 更新幻灯片
+    const newTransformValue = 'translateX(' + (-index * 100) + '%)';
+    document.querySelector('.slides').style.transform = newTransformValue;
+
+    // 更新指示器
+    indicators.forEach(ind => ind.classList.remove('active'));
+    indicators[index].classList.add('active');
+}
+
+// setInterval(function() {
+//     moveSlide(1);
+// }, 3000); // 每3秒自动播放下一张
+

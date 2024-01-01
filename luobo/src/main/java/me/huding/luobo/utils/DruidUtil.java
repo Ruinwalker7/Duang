@@ -1,6 +1,5 @@
 package me.huding.luobo.utils;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 
 import javax.sql.DataSource;
@@ -10,10 +9,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-/**
- * Druid连接池
- * @author tangpengfei
- */
 public class DruidUtil {
 
     public static DataSource ds;
@@ -24,11 +19,8 @@ public class DruidUtil {
         try {
             // 加载配置文件 druid.properties
             properties.load(resourceAsStream);
-            System.out.println(properties);
             // 获取连接池对象
             ds = DruidDataSourceFactory.createDataSource(properties);
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -41,22 +33,10 @@ public class DruidUtil {
             }
         }
     }
-
-    /**
-     *  从连接池中获取一个数据库的连接
-     * @return
-     * @throws SQLException
-     */
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
-
     public static DataSource getDataSource(){
         return ds;
     }
-
-
-
-
-
 }

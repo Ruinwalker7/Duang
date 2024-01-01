@@ -17,28 +17,15 @@ public class BlogUtil {
     public static String createBlogPost(ServletContext servletContext, Blog blog, String uuid, Timestamp timestamp) {
 
         try {
-            // 获取模板
-//            String realPath = servletContext.getRealPath("template/template.html");
-//            String template = new String(Files.readAllBytes(Paths.get(realPath)), "UTF-8");
-//            // 替换占位符
-//            template = template.replace("<!-- BLOG_COVER_IMAGE -->", blog.getCoverURL());
-//            template = template.replace("<!-- BLOG_CONTENT -->", blog.getHtml());
-//            template = template.replace("<!-- BLOG_TITLE -->", blog.getTitle());
-//            template = template.replace("<!-- BLOG_TAG -->", blog.getTags().replace(","," "));
-//            template = template.replace("<!-- BLOG_CREATE_TIME -->", blog.getPublishTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
-//            String finalHtml = template.replace("<!-- BLOG_UPDATE_TIME -->",  blog.getLastUpdateTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
             String finalHtml = createFile(blog.getCoverURL(),blog.getHtml(),blog.getTitle(),blog.getTags().replace(","," "),blog.getPublishTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE)
                     ,blog.getLastUpdateTime().toLocalDateTime().format(DateTimeFormatter.ISO_DATE));
             LocalDateTime dateTime = timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-
             int year = dateTime.getYear();
             int month = dateTime.getMonthValue();
             int day  = dateTime.getDayOfMonth();
             String relateDirPath = "/artical/"+year+"/"+month+"/"+day;
             String saveDirPath = servletContext.getRealPath(relateDirPath);
-
             File folder = new File(saveDirPath);
-
             // 检查文件夹是否存在
             if (!folder.exists()) {
                 // 文件夹不存在，尝试创建
